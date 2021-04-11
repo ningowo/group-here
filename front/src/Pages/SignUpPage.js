@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 
 export default function SignUpPage() {
-  function handleSubmit() {
-    let username;
-    // handle sign up here
-  }
-
   return (
-    <div>
+    <div style={{ textAlign: "center", margin: "0 20px" }}>
       <form className="navbar-form navbar-right" onSubmit={handleSubmit}>
         <div className="form-group">
           <input

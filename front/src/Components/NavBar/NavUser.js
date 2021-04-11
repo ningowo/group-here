@@ -2,8 +2,8 @@ import React from "react";
 
 export default function NavUser() {
   // judge weither login or not
-
-  if (!login) {
+  const username = "xx";
+  if (!username) {
     return (
       <div>
         <li class="nav-item">

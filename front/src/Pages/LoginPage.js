@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function LoginPage() {
-  function handleSubmit() {
-    let username;
-    // handle login here
-  }
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const res = await (await fetch("/getUser")).json();
+
+      console.log("Got user", res);
+      setUser(res.user);
+    };
+
+    console.log("Checking user");
+    checkUser();
+  }, []);
 
   return (
-    <div>
-      <form className="navbar-form navbar-right" onSubmit={handleSubmit}>
+    <div style={{ textAlign: "center", margin: "0 20px" }}>
+      <form className="navbar-form navbar-right" action="/login" method="post">
         <div className="form-group">
           <input
             type="text"
