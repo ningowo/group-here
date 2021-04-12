@@ -1,32 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function SignUpPage() {
+export default function LoginPage() {
   return (
-    <div style={{ textAlign: "center", margin: "0 20px" }}>
-      <form className="navbar-form navbar-right" onSubmit={handleSubmit}>
+    <div class="userPage">
+      <form className="bg-light" action="/signUp" method="post">
+        <h4>Sign up</h4>
         <div className="form-group">
+          <label class="form-label">Username</label>
           <input
-            type="username"
+            type="text"
             className="form-control"
-            placeholder="please enter your username"
+            name="username"
+            placeholder="Enter your username"
             required
             id="username"
           />
-
+          <label class="form-label">Password</label>
           <input
             type="password"
             className="form-control"
-            placeholder="please enter your password"
-            required
+            name="password"
             id="password"
+            placeholder="Enter your password"
+            required
+          />
+          <label class="form-label">Re-enter Password</label>
+          <input
+            type="password"
+            className="form-control"
+            name="re-enter-password"
+            id="re-enter-password"
+            placeholder="Enter your password again"
+            required
           />
         </div>
-
-        <button type="submit" className="btn">
-          login
-        </button>
+        <div class="d-grid gap-2 btnDiv">
+          <button class="btn btn-outline-primary" type="submit">
+            submit
+          </button>
+        </div>
+        Already have an account? <a href="/toLogin">Login Here</a>
       </form>
-      Already have an account? <a href="/toLogin">login</a>
     </div>
   );
 }

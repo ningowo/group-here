@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import NavUser from "./NavUser.js";
 
 export default function NavBar() {
+  const username = "ning";
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -18,15 +19,6 @@ export default function NavBar() {
           </ul>
         </div>
         <NavUser></NavUser>
-        <div>
-          {username}
-          <a href="/logout">logout</a>
-        </div>
-        <div className="navbar">
-          <p>AwesomeSite</p>
-          <p>{username}</p>
-        </div>
-        );
       </div>
     </nav>
   );
