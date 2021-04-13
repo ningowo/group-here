@@ -16,6 +16,11 @@ router.get("/getUser", async (req, res) => {
   res.send(user);
 });
 
+/*
+Nice start on the routing here, especially with the redirect on any paths that do not match. 
+Adding some validation on requests and responses could be helpful.
+*/
+
 router.get("*", (req, res) =>
   res.sendFile(path.resolve("front", "build", "index.html"))
 );
