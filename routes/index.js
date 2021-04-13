@@ -12,6 +12,7 @@ router.post("/getPost", function (req, res) {
 });
 
 router.get("/getUser", async (req, res) => {
+  //looks like this is a hard coding one.
   const user = await dbController.findUserByName("tiange");
   res.send(user);
 });
