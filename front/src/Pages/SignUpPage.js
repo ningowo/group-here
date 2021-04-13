@@ -6,7 +6,7 @@ export default function LoginPage() {
       <form className="bg-light" action="/signUp" method="post">
         <h4>Sign up</h4>
         <div className="form-group">
-          <label class="form-label">Username</label>
+          <label className="form-label">Username</label>
           <input
             type="text"
             className="form-control"
@@ -15,7 +15,7 @@ export default function LoginPage() {
             required
             id="username"
           />
-          <label class="form-label">Password</label>
+          <label className="form-label">Password</label>
           <input
             type="password"
             className="form-control"
@@ -24,7 +24,7 @@ export default function LoginPage() {
             placeholder="Enter your password"
             required
           />
-          <label class="form-label">Re-enter Password</label>
+          <label className="form-label">Re-enter Password</label>
           <input
             type="password"
             className="form-control"
@@ -34,8 +34,8 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div class="d-grid gap-2 btnDiv">
-          <button class="btn btn-outline-primary" type="submit">
+        <div classNsame="d-grid gap-2 btnDiv">
+          <button className="btn btn-outline-primary" type="submit">
             submit
           </button>
         </div>

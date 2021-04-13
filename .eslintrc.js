@@ -1,22 +1,24 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true,
+        es6: true,
         node: true,
+        jquery: true,
+        es2021: true,
     },
-    extends: ["eslint:recommended", "plugin:react/recommended"],
+    extends: ["eslint:recommended", "prettier"],
     parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: "module",
         ecmaFeatures: {
             jsx: true,
         },
-        ecmaVersion: 12,
-        sourceType: "module",
     },
-    plugins: ["react"],
     rules: {
-        indent: ["error", 4],
-        "linebreak-style": ["error", "windows"],
+        indent: ["error", 2, { SwitchCase: 1 }],
+        "linebreak-style": ["error", "unix"],
         quotes: ["error", "double"],
         semi: ["error", "always"],
+        "no-console": 0,
     },
 };

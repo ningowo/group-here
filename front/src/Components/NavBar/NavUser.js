@@ -7,14 +7,14 @@ export default function NavUser() {
     return (
       <div>
         <ul className="navbar-nav justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link" href="/toLogin">
+          <li className="nav-item">
+            <a className="nav-link" href="/toLogin">
               Login
             </a>
           </li>
-          <li class="nav-item">|</li>
+          <li className="nav-item">|</li>
           <li className="nav-item">
-            <a class="nav-link" href="/toSignUp">
+            <a className="nav-link" href="/toSignUp">
               Sign up
             </a>
           </li>

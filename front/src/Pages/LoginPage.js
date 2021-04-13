@@ -16,7 +16,7 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <div class="userPage">
+    <div className="userPage">
       <form className="bg-light" action="/login" method="post">
         <h4>Login</h4>
         <div className="form-group">

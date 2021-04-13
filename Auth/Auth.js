@@ -5,7 +5,7 @@ function MyAuth() {
   const myAuth = {};
 
   myAuth.setupPassport = (app) => {
-    const myDB = require("../db/MyDB.js");
+    const myDB = require("../db/DBController.js");
 
     // Configure the local strategy for use by Passport.
     //

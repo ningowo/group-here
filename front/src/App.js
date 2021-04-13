@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage.js";
 import SignUpPage from "./Pages/SignUpPage.js";
 import HomePage from "./Pages/HomePage.js";
-//import DetailPage from "./Pages/DetailPage.js";
+import DetailPage from "./Pages/DetailPage.js";
 
 import NavBarGlobal from "./Components/NavBar/NavBarGlobal.js";
 
@@ -15,9 +15,8 @@ function App() {
 
   return (
     <Router>
-      <div class="container">
+      <div className="container">
         <NavBarGlobal></NavBarGlobal>
-
         <Switch>
           <Route path="/toLogin">
             <LoginPage></LoginPage>
@@ -25,16 +24,11 @@ function App() {
           <Route path="/toSignUp">
             <SignUpPage></SignUpPage>
           </Route>
+          <Route path="/detail/:id" children={<DetailPage />} />
           <Route path="/">
             <HomePage></HomePage>
           </Route>
-
-          {/*         // to detail pages
-        <Route path="/detail/{}">
-          <DetailPage postName=""></DetailPage>
-        </Route>*/}
         </Switch>
-
         <footer>Made by Ning & Tiange</footer>
       </div>
     </Router>
