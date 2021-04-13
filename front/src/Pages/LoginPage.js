@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
+import App from "../App";
 
 export default function LoginPage() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const checkUser = async () => {
-      const res = await (await fetch("/getUser")).json();
-
-      console.log("Got user", res);
-      setUser(res.user);
-    };
-
-    console.log("Checking user");
-    checkUser();
-  }, []);
-
   return (
     <div className="userPage">
-      <form className="bg-light" action="/login" method="post">
+      <form className="bg-light" action="/login" method="POST">
         <h4>Login</h4>
         <div className="form-group">
-          <label class="form-label">Username</label>
+          <label className="form-label">Username</label>
           <input
             type="text"
             className="form-control"
@@ -29,7 +16,7 @@ export default function LoginPage() {
             required
             id="username"
           />
-          <label class="form-label">Password</label>
+          <label className="form-label">Password</label>
           <input
             type="password"
             className="form-control"
@@ -39,8 +26,8 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div class="d-grid gap-2 btnDiv">
-          <button class="btn btn-outline-primary" type="submit">
+        <div className="d-grid gap-2 btnDiv">
+          <button className="btn btn-outline-primary" type="submit">
             submit
           </button>
         </div>

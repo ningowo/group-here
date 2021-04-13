@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 export default function LoginPage() {
   return (
-    <div class="userPage">
-      <form className="bg-light" action="/signUp" method="post">
+    <div className="userPage">
+      <form className="bg-light" action="/signUp" method="POST">
         <h4>Sign up</h4>
         <div className="form-group">
           <label className="form-label">Username</label>
@@ -34,7 +34,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div classNsame="d-grid gap-2 btnDiv">
+        <div className="d-grid gap-2 btnDiv">
           <button className="btn btn-outline-primary" type="submit">
             submit
           </button>
