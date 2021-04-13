@@ -54,6 +54,10 @@ function MyAuth() {
     // Initialize Passport and restore authentication state, if any, from the
     // session.
     app.use(
+      /*
+      Great job setting up the authentication here. 
+      I would recommend looking into saving express-session data into the MongoDB to preserve express-session state that will persist through browser closes.
+      */
       require("express-session")({
         secret: "Loves Web John",
         resave: false,
