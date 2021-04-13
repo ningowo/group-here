@@ -10,6 +10,7 @@ export default function DetailPage() {
 
   console.log("params", params);
 
+  
   // useEffect(
   //   function fetch() {
   //     (async function () {
