@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import NavUser from "./NavUser.js";
 
+
+/*
+Nice use of a global navbar. Some conditional rendering could be great here. 
+I would also expore scenarios where using a React Router Link might be more useful than using an HTML anchor tag.
+*/
+
 export default function NavBar() {
   const username = "ning";
   return (
