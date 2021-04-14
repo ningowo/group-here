@@ -70,13 +70,13 @@ export default function HomePage() {
     for (let group of groupsInput ?? []) {
       let groupRep = [];
       groupRep.push(
-        <h3 key={group._id}>
+        <h3 className="groupName" key={group._id}>
           <a href={"/group/" + group.group_name}>{group.group_name}</a>
         </h3>
       );
       for (let post of group.posts ?? []) {
         groupRep.push(
-          <div key={group._id + post}>
+          <div className="postName" key={group._id + post}>
             <a href={"/detail/" + post}>{post}</a>
           </div>
         );
@@ -89,11 +89,10 @@ export default function HomePage() {
   console.log("_______", groups);
 
   return (
-    <div className="container">
+    <div className="container main-container">
       <h2>Group List</h2>
       <div className="row">
         <div className="col-8">
-          post here
           {
             //<div hidden={true}>{groups}</div>
           }
@@ -102,9 +101,9 @@ export default function HomePage() {
             //     h3>Initail Group</h3>
             //   </a>></div>}
           }
-          <div>{renderPost(groups)}</div>
+          <div className="posts">{renderPost(groups)}</div>
         </div>
-        <div className="col-4">recommends here</div>
+        <div className="col-4"> </div>
         {/*        <PostList></PostList>
         <Recommends></Recommends>*/}
       </div>
