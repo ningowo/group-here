@@ -7,6 +7,7 @@ import LoginPage from "./Pages/LoginPage.js";
 import SignUpPage from "./Pages/SignUpPage.js";
 import HomePage from "./Pages/HomePage.js";
 import DetailPage from "./Pages/DetailPage.js";
+import GroupPage from "./Pages/GroupPage.js";
 
 import NavBarGlobal from "./Components/NavBar/NavBarGlobal.js";
 
@@ -25,6 +26,7 @@ function App() {
             <SignUpPage></SignUpPage>
           </Route>
           <Route path="/detail/:id" children={<DetailPage />} />
+          <Route path="/group/:id" children={<GroupPage />} />
           <Route path="/">
             <HomePage></HomePage>
           </Route>

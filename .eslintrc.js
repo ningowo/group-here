@@ -21,4 +21,5 @@ module.exports = {
         semi: ["error", "always"],
         "no-console": 0,
     },
+    parser: "babel-eslint",
 };
