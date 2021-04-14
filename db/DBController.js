@@ -104,7 +104,6 @@ function DBController() {
       console.log("Collection ready, get user", name);
       const user = await col.find({ username: name }).toArray();
       console.log("got", user);
-      console.log(user[0].password);
 
       return user[0];
     } finally {

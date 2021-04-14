@@ -1,10 +1,53 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router";
 import App from "../App";
 
 export default function LoginPage() {
-  return (
+  const [validUser, isValidUser] = useState(true);
+  const [loginStat, setLoginStat] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("username", username);
+
+    const userInfo = {
+      username: username,
+      password: password,
+    };
+
+    const resRaw = await fetch("/login", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
+
+    const res = await resRaw.json();
+
+    console.log(res.isLogin);
+    console.log(res.message);
+
+    if (!res.isLogin) {
+      isValidUser(false);
+    } else {
+      isValidUser(true);
+      setLoginStat(true);
+      window.location.reload();
+    }
+  };
+
+  return loginStat ? (
+    <di>
+      {" "}
+      <Redirect to="/" />
+    </di>
+  ) : (
     <div className="userPage">
-      <form className="bg-light" action="/login" method="POST">
+      <form className="bg-light" onSubmit={handleSubmit}>
         <h4>Login</h4>
         <div className="form-group">
           <label className="form-label">Username</label>
@@ -13,6 +56,8 @@ export default function LoginPage() {
             className="form-control"
             name="username"
             placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
             id="username"
           />
@@ -23,6 +68,8 @@ export default function LoginPage() {
             name="password"
             id="password"
             placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
@@ -30,6 +77,9 @@ export default function LoginPage() {
           <button className="btn btn-outline-primary" type="submit">
             submit
           </button>
+        </div>
+        <div block className="alert-danger" role="alert" hidden={validUser}>
+          Invalid username or password
         </div>
         New to Group Here? <a href="/toSignUp">create an account</a>
       </form>

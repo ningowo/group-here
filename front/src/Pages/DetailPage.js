@@ -26,12 +26,7 @@ export default function DetailPage() {
   // }
   return (
     <div className="DetailPage">
-      {
-        // this.props.match.params.id
-        /*<h2>{post.title}</h2>
-      <p>{post.content}</p> */
-        // postName
-      }
+      <h2>{params.id}</h2>
     </div>
   );
 }
