@@ -51,7 +51,7 @@ export default function LoginPage() {
     <Redirect to="/" />
   ) : (
     <div className="userPage">
-      <form className="bg-light" onSubmit={handleSubmit}>
+      <form className="bg-light user-ctl" onSubmit={handleSubmit}>
         <h4>Sign up</h4>
         <div className="form-group">
           <label className="form-label">Username</label>
