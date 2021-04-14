@@ -47,7 +47,7 @@ export default function LoginPage() {
     </di>
   ) : (
     <div className="userPage">
-      <form className="bg-light" onSubmit={handleSubmit}>
+      <form className="bg-light user-ctl" onSubmit={handleSubmit}>
         <h4>Login</h4>
         <div className="form-group">
           <label className="form-label">Username</label>

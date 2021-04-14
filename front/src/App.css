@@ -8,10 +8,12 @@
   margin: 0 auto;
   width: 600px;
   height: 500px;
-  /*background-color: aliceblue;*/
 }
 
 form {
+}
+
+.user-ctl {
   margin: 50px auto;
   width: 500px;
   height: 500px;
@@ -38,7 +40,8 @@ footer {
   margin: 20px;
 }
 
-.groupName {
+
+.groupDiv {
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -46,6 +49,16 @@ footer {
   border-color: rgba(0.5, 0.5, 0.5, 0.5);
 }
 
+
+.postDiv {
+  margin: 10px;
+  padding: 10px;
+}
+
+.postDetailDiv {
+}
+
 a {
-  font-style: none;
+  text-decoration: none;
+  color: black;
 }

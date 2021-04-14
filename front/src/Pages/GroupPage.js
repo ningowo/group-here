@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
+// 这个可以删了，用GroupList这个component
 export default function GroupPage() {
   const [loginStat, setLoginState] = useState(false);
   const [validPostName, isValidPostName] = useState(true);

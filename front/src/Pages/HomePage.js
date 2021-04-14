@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PostList from "../Components/PostList.js";
-import Recommends from "../Components/Recommends.js";
+import GroupList from "../Components/GroupList.js";
 
 export default function HomePage() {
   const [loginStat, setLoginState] = useState(false);
@@ -8,6 +8,7 @@ export default function HomePage() {
   const [groupName, setGroupName] = useState("");
   const [username, setUsername] = useState("");
   const [groups, setGroups] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [reload, setRelod] = useState(0);
 
   useEffect(() => {
@@ -62,6 +63,9 @@ export default function HomePage() {
     console.log("reload", reload);
   };
 
+  // 这个模块用PostList，这里的可以挪过去了。我基本都写好了直接用就可以
+  //然后我的想法是选出点赞数最多的post按顺序放在homepage左侧，grouplist在右边
+  // 还有数据库的post里加个点赞数
   const renderPost = (groupsInput) => {
     let res = [];
 
@@ -70,13 +74,13 @@ export default function HomePage() {
     for (let group of groupsInput ?? []) {
       let groupRep = [];
       groupRep.push(
-        <h3 className="groupName" key={group._id}>
+        <h3 className="groupName card" key={group._id}>
           <a href={"/group/" + group.group_name}>{group.group_name}</a>
         </h3>
       );
       for (let post of group.posts ?? []) {
         groupRep.push(
-          <div className="postName" key={group._id + post}>
+          <div className="postName card" key={group._id + post}>
             <a href={"/detail/" + post}>{post}</a>
           </div>
         );
@@ -86,28 +90,20 @@ export default function HomePage() {
     return res;
   };
 
-  console.log("_______", groups);
+  //console.log("_______", groups);
 
   return (
     <div className="container main-container">
       <h2>Group List</h2>
       <div className="row">
         <div className="col-8">
-          post here
-          {
-            //<div hidden={true}>{groups}</div>
-          }
-          {
-            // <div><<a id="postTitle" href="/group/initial_group">
-            //     h3>Initail Group</h3>
-            //   </a>></div>}
-          }
-          <div>{renderPost(groups)}</div>
+          <PostList posts={posts}></PostList>
         </div>
-        <div className="col-4">recommends here</div>
-        {/*        <PostList></PostList>
-        <Recommends></Recommends>*/}
+        <div className="col-4">
+          <GroupList groups={groups}></GroupList>
+        </div>
       </div>
+
       <div>
         <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
           <h4>Create Group</h4>
