@@ -2,9 +2,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 function DBController() {
   const dbController = {};
-  const url =
-    "mongodb+srv://web-team:web-team-project@clusterpersonaltecblog.vjh3y.mongodb.net/personalTecBlogDB?retryWrites=true&w=majority";
-
+  const url = "put the connection url into a hidden file"
   const DB_NAME = "groupHereDB";
 
   dbController.create = async (colName, post) => {
