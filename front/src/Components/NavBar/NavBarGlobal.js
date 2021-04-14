@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import NavUser from "./NavUser.js";
 
 export default function NavBar() {
-  const username = "ning";
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
+
         <a className="navbar-brand" href="/homepage">
           Group Here
         </a>
