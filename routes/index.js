@@ -61,11 +61,15 @@ router.get("/logout", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const colName = req.body.colName;
-  const data = req.body.data;
-  console.log(colName, data);
-  const dbres = await dbController.create(colName, data);
-  console.log("create", dbres);
+  try {
+    const colName = req.body.colName;
+    const data = req.body.data;
+    console.log(colName, data);
+    await dbController.create(colName, data);
+    res.send({ created: true, message: "successfully created data" });
+  } catch {
+    res.send({ created: false, message: "created error" });
+  }
 });
 
 router.get("/getGroups", async (req, res) => {

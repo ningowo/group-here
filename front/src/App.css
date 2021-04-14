@@ -33,3 +33,19 @@ input {
 footer {
   margin-top: 30px;
 }
+
+.main-container {
+  margin: 20px;
+}
+
+.groupName {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: rgba(0.5, 0.5, 0.5, 0.5);
+}
+
+a {
+  font-style: none;
+}

@@ -18,7 +18,7 @@ function DBController() {
       const col = db.collection(colName);
       console.log("Collection ready, insert", colName, post);
       const res = await col.insertOne(post);
-      console.log("Inserted", res);
+      // console.log("Inserted", res);
 
       return res;
     } finally {
