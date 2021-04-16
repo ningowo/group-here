@@ -19,7 +19,8 @@ const PostList = (props) => {
         })
       ).json();
       console.log("res from be", res.data);
-      setPosts(res.data);
+      //setPosts(res.data);
+      setPosts((prevPosts) => [...prevPosts, ...res.data]);
       console.log("after setgroup", posts);
     };
     fetchPostList();
@@ -30,9 +31,9 @@ const PostList = (props) => {
       <div class="postDiv" key={post._id}>
         <div class="likes">{post.likes} likes</div>
         <div class="postContentDiv">
-          <h3>
+          <h4>
             <a href={"/detail/" + post.post_name}>{post.post_name}</a>
-          </h3>
+          </h4>
           <div class="postOverview">
             <p>{post.content}</p>
           </div>

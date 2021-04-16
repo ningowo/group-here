@@ -29,6 +29,7 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchdata() {
       const data = { colName: "groups", query: {} };
+      // 我这里getGroups是404
       const res = await (
         await fetch("/query", {
           method: "POST",
@@ -41,6 +42,7 @@ export default function HomePage() {
       ).json();
       console.log("res from be", res.data);
       setGroups(res.data);
+      //setGroups((prevGroups) => [...prevGroups, ...res.data]);
       console.log("after setgroup", groups);
     }
     fetchdata();
@@ -54,7 +56,7 @@ export default function HomePage() {
       data: { author: username, group_name: groupName },
       colName: "groups",
     };
-
+    // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
     const resRaw = await fetch("/create", {
       method: "POST",
       credentials: "same-origin",
@@ -100,52 +102,47 @@ export default function HomePage() {
     return res;
   };
 
-  //console.log("_______", groups);
-
   return (
     <div className="container main-container">
-      <h2>Group List</h2>
+      <h4> Explore</h4>
+      <br></br>
       <div className="row">
         <div className="col-8">
-          {
-            //<PostList posts={posts}></PostList> //这里我之后再改改 按点赞数
-          }
+          {/*<PostList posts={posts}></PostList> */}
+          {/*//这里我之后再改改 按点赞数*/}
+          <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
+            <h4>Create Group</h4>
+            <div className="form-group">
+              <label className="form-label">Group Name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="group_name"
+                placeholder="Enter your groupName"
+                value={groupName}
+                onChange={(e) => setGroupName(e.target.value)}
+                required
+                id="username"
+              />
+            </div>
+            <div className="d-grid gap-2 btnDiv">
+              <button className="btn btn-outline-primary" type="submit">
+                submit
+              </button>
+            </div>
+            <div
+              block
+              className="alert-danger"
+              role="alert"
+              hidden={validGroupName}
+            >
+              Invalid username or password
+            </div>
+          </form>
         </div>
         <div className="col-4">
           <GroupList username={username} query={{}}></GroupList>
         </div>
-      </div>
-
-      <div>
-        <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
-          <h4>Create Group</h4>
-          <div className="form-group">
-            <label className="form-label">Group Name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="group_name"
-              placeholder="Enter your groupName"
-              value={groupName}
-              onChange={(e) => setGroupName(e.target.value)}
-              required
-              id="username"
-            />
-          </div>
-          <div className="d-grid gap-2 btnDiv">
-            <button className="btn btn-outline-primary" type="submit">
-              submit
-            </button>
-          </div>
-          <div
-            block
-            className="alert-danger"
-            role="alert"
-            hidden={validGroupName}
-          >
-            Invalid username or password
-          </div>
-        </form>
       </div>
     </div>
   );

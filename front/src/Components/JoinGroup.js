@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 export default function JoinGroup(prop) {
   const [inGroup, setInGroup] = useState();
-  const group;
-  const username;
+  const group = "1";
+  const username = "ning";
   // 这里判断一下用户是否在组里
 
   if (inGroup) {

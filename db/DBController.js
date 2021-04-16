@@ -19,7 +19,7 @@ function DBController() {
       console.log("Collection ready, insert", colName, post);
       const res = await col.insertOne(post, (error, dbres) => {
         if (error) {
-          console.log("Created error", post);
+          console.log("Created error", error.log());
         } else {
           console.log("create,", dbres.ops[0]);
           return dbres.ops[0];
@@ -75,7 +75,6 @@ function DBController() {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
-      console.log("Connecting to the db");
       await client.connect();
       console.log("Connected!");
       const db = client.db(DB_NAME);

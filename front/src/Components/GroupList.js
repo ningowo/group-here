@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import JoinGroup from "./joinGroup.js";
+//import JoinGroup from "./JoinGroup.js";
 import PostList from "./PostList.js";
 
 const GroupList = (props) => {
@@ -9,9 +9,11 @@ const GroupList = (props) => {
 
   useEffect(() => {
     const fetchPostList = async () => {
+      //console.log("query is ", query);
       const data = { colName: "groups", query: query };
       const res = await (
-        await fetch("/query", {
+        await fetch("/getGroups", {
+          // await fetch("/query", {
           method: "POST",
           credentials: "same-origin",
           headers: {
@@ -21,11 +23,24 @@ const GroupList = (props) => {
         })
       ).json();
       console.log("res from be", res.data);
-      setGroups(res.data);
+      // let group1 = {
+      //   g1: {
+      //     _id: "1",
+      //     group_name: "group name here",
+      //     members: { length: "2" },
+      //   },
+      //   g2: {
+      //     _id: "1",
+      //     group_name: "group name here",
+      //     members: { length: "2" },
+      //   },
+      // };
+      //setGroups(res.data);
+      setGroups((prevGroups) => [...prevGroups, ...res.data]);
       console.log("after setgroup", groups);
     };
     fetchPostList();
-  }, []);
+  });
 
   const renderGroups = () => {
     return groups.map((group) => (
@@ -34,7 +49,7 @@ const GroupList = (props) => {
         {/*下面这行想统计一下小组里的人数，不过如果最后不方便写也可以删了*/}
         <div className="groupMemberNum">{group.members.length}</div>
         <PostList query={{ group: group.group_name }} />
-        <JoinGroup username=""></JoinGroup>
+        {/*<JoinGroup username=""></JoinGroup>*/}
         <br></br>
       </div>
     ));
