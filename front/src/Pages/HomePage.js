@@ -53,8 +53,8 @@ export default function HomePage() {
     event.preventDefault();
 
     const data = {
-      data: { author: username, group_name: groupName },
       colName: "groups",
+      data: { author: username, group_name: groupName },
     };
     // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
     const resRaw = await fetch("/create", {

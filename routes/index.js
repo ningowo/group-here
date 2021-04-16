@@ -72,12 +72,6 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.post("/getGroups", async (req, res) => {
-  const dbres = await dbController.query("groups", {});
-  console.log("qurey from db", dbres);
-  res.send({ data: dbres });
-});
-
 router.post("/query", async (req, res) => {
   try {
     const colName = req.body.colName;
@@ -88,6 +82,12 @@ router.post("/query", async (req, res) => {
   } catch {
     res.send({ data: null, message: "query error" });
   }
+});
+
+router.post("/getGroups", async (req, res) => {
+  const dbres = await dbController.query("groups", {});
+  console.log("qurey from db", dbres);
+  res.send({ data: dbres });
 });
 
 router.get("*", (req, res) =>

@@ -23,18 +23,6 @@ const GroupList = (props) => {
         })
       ).json();
       console.log("res from be", res.data);
-      // let group1 = {
-      //   g1: {
-      //     _id: "1",
-      //     group_name: "group name here",
-      //     members: { length: "2" },
-      //   },
-      //   g2: {
-      //     _id: "1",
-      //     group_name: "group name here",
-      //     members: { length: "2" },
-      //   },
-      // };
       //setGroups(res.data);
       setGroups((prevGroups) => [...prevGroups, ...res.data]);
       console.log("after setgroup", groups);
