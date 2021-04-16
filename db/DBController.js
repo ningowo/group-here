@@ -17,7 +17,14 @@ function DBController() {
       const db = client.db(DB_NAME);
       const col = db.collection(colName);
       console.log("Collection ready, insert", colName, post);
-      const res = await col.insertOne(post);
+      const res = await col.insertOne(post, (error, dbres) => {
+        if (error) {
+          console.log("Created error", post);
+        } else {
+          console.log("create,", dbres.ops[0]);
+          return dbres.ops[0];
+        }
+      });
       // console.log("Inserted", res);
 
       return res;
@@ -42,7 +49,19 @@ function DBController() {
         query.toString(),
         updae.toString()
       );
-      const res = await col.updateOne(query, update);
+      const res = await col.updateOne(
+        query,
+        update,
+        { upsert: ture },
+        (error, dbres) => {
+          if (error) {
+            console.log("Update error", update);
+          } else {
+            console.log("Updated,", dbres.ops[0]);
+            return dbres.ops[0];
+          }
+        }
+      );
       console.log("updated", res);
 
       return res;
@@ -82,7 +101,14 @@ function DBController() {
       const db = client.db(DB_NAME);
       const col = db.collection(colName);
       console.log("Collection ready, delete", colName, query.toString());
-      const res = await col.deleteOne(query);
+      const res = await col.deleteOne(query, (error, dbres) => {
+        if (error) {
+          console.log("Created error", post);
+        } else {
+          console.log("create,", dbres.ops[0]);
+          return dbres.ops[0];
+        }
+      });
       console.log("delated", res);
 
       return res;

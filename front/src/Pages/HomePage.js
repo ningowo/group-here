@@ -28,7 +28,17 @@ export default function HomePage() {
 
   useEffect(() => {
     async function fetchdata() {
-      const res = await (await fetch("/getGroups")).json();
+      const data = { colName: "groups", query: {} };
+      const res = await (
+        await fetch("/query", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+      ).json();
       console.log("res from be", res.data);
       setGroups(res.data);
       console.log("after setgroup", groups);
@@ -97,10 +107,12 @@ export default function HomePage() {
       <h2>Group List</h2>
       <div className="row">
         <div className="col-8">
-          <PostList posts={posts}></PostList>
+          {
+            //<PostList posts={posts}></PostList> //这里我之后再改改 按点赞数
+          }
         </div>
         <div className="col-4">
-          <GroupList groups={groups}></GroupList>
+          <GroupList username={username} query={{}}></GroupList>
         </div>
       </div>
 

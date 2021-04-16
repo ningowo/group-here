@@ -78,6 +78,18 @@ router.get("/getGroups", async (req, res) => {
   res.send({ data: dbres });
 });
 
+router.post("/query", async (req, res) => {
+  try {
+    const colName = req.body.colName;
+    const data = req.body.query;
+    console.log(colName, query);
+    const res = await dbController.query(colName, data);
+    res.send({ data: dbres, message: "successfully query" });
+  } catch {
+    res.send({ data: null, message: "query error" });
+  }
+});
+
 router.get("*", (req, res) =>
   res.sendFile(path.resolve("front", "build", "index.html"))
 );

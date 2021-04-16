@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
+import PostList from "./PostList.js";
 
+// 这个不能删， 这里面用PostList Componnet，主页用GroupList Component，这是显示group详情de页面，可以把JoinGroup Component也加进来
+// 在这个page里再加一个join group的功能
 // 这个可以删了，用GroupList这个component
 export default function GroupPage() {
   const [loginStat, setLoginState] = useState(false);
@@ -60,7 +62,7 @@ export default function GroupPage() {
     <div>
       <h2>{params.id}</h2>
       <div className="row">
-        <div className="col-8">{renderPost}</div>
+        <div className="col-8"></div>
         <div className="col-4"></div>
       </div>
       <div>
