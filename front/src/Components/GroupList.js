@@ -5,7 +5,7 @@ import PostList from "./PostList.js";
 
 const GroupList = (props) => {
   const [groups, setGroups] = useState([]);
-  const { query } = props;
+  const { query, username } = props;
 
   useEffect(() => {
     const fetchPostList = async () => {
@@ -34,7 +34,7 @@ const GroupList = (props) => {
         {/*下面这行想统计一下小组里的人数，不过如果最后不方便写也可以删了*/}
         <div className="groupMemberNum">{group.members.length}</div>
         <PostList query={{ group: group.group_name }} />
-        <JoinGroup username=""></JoinGroup>
+        <JoinGroup username={username} group={group}></JoinGroup>
         <br></br>
       </div>
     ));
