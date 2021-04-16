@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router";
-import App from "../App";
 
 export default function LoginPage() {
   const [validUser, isValidUser] = useState(true);
@@ -10,7 +9,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("username", username);
+    console.log("username is ", username);
 
     const userInfo = {
       username: username,
@@ -28,7 +27,7 @@ export default function LoginPage() {
 
     const res = await resRaw.json();
 
-    console.log(res.isLogin);
+    console.log("res.login", res.isLogin);
     console.log(res.message);
 
     if (!res.isLogin) {
@@ -41,10 +40,10 @@ export default function LoginPage() {
   };
 
   return loginStat ? (
-    <di>
+    <div>
       {" "}
       <Redirect to="/" />
-    </di>
+    </div>
   ) : (
     <div className="userPage">
       <form className="bg-light user-ctl" onSubmit={handleSubmit}>
@@ -72,7 +71,7 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
+        </div>{" "}
         <div className="d-grid gap-2 btnDiv">
           <button className="btn btn-outline-primary" type="submit">
             submit

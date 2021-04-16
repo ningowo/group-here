@@ -11,6 +11,7 @@
 }
 
 form {
+  padding: 40px;
 }
 
 .user-ctl {
@@ -34,25 +35,20 @@ input {
 
 footer {
   margin-top: 30px;
+  text-align: center;
 }
 
 .main-container {
   margin: 20px;
 }
 
-
-.groupDiv {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: rgba(0.5, 0.5, 0.5, 0.5);
-}
-
-
+.groupDiv,
 .postDiv {
   margin: 10px;
   padding: 10px;
+  /*  border-radius: 5px;
+  border-style: solid;
+  border-color: rgba(0.5, 0.5, 0.5, 0.5);*/
 }
 
 .postDetailDiv {
@@ -61,4 +57,19 @@ footer {
 a {
   text-decoration: none;
   color: black;
+}
+
+form a {
+  text-decoration: underline #0d6efd;
+  color: #0d6efd;
+}
+
+.likes,
+.postContentDiv {
+  margin: 5px;
+  display: flex;
+}
+
+div span {
+  display: flex;
 }

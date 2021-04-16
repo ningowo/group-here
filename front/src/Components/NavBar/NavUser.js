@@ -21,14 +21,6 @@ export default function NavUser() {
     fetchdata();
   }, [reload]);
 
-  // if (!res.username) {
-  //   setLoginState(false);
-  //   setUsername("");
-  // } else {
-  //   setLoginState(true);
-  //   setUsername(res.username);
-  // }
-
   const logout = async (event) => {
     event.preventDefault();
     await fetch("/logout");
@@ -58,7 +50,7 @@ export default function NavUser() {
   } else {
     return (
       <div>
-        {username}&nbsp;
+        Hi, {username}&nbsp;
         <a href="/logout" onclick={logout}>
           {" "}
           logout

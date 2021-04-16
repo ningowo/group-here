@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import JoinGroup from "./joinGroup.js";
+//import JoinGroup from "./JoinGroup.js";
 import PostList from "./PostList.js";
 
 const GroupList = (props) => {
@@ -9,9 +9,11 @@ const GroupList = (props) => {
 
   useEffect(() => {
     const fetchPostList = async () => {
+      //console.log("query is ", query);
       const data = { colName: "groups", query: query };
       const res = await (
-        await fetch("/query", {
+        await fetch("/getGroups", {
+          // await fetch("/query", {
           method: "POST",
           credentials: "same-origin",
           headers: {
@@ -21,11 +23,12 @@ const GroupList = (props) => {
         })
       ).json();
       console.log("res from be", res.data);
-      setGroups(res.data);
+      //setGroups(res.data);
+      setGroups((prevGroups) => [...prevGroups, ...res.data]);
       console.log("after setgroup", groups);
     };
     fetchPostList();
-  }, []);
+  });
 
   const renderGroups = () => {
     return groups.map((group) => (
