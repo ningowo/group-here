@@ -11,7 +11,7 @@ router.post("/getPost", function (req, res) {
   res.send(post);
 });
 
-router.post("/login", async (req, res) => {
+router.get("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const user = await dbController.findUserByName(username);
@@ -20,9 +20,9 @@ router.post("/login", async (req, res) => {
     res.send({ isLogin: false, message: "no user found" });
   }
 
-  console.log(user);
+  console.log("user is ", user);
   console.log(password);
-  console.log(user.password == password);
+  //console.log(user.password === password);
 
   if (password == user.password) {
     req.session.loginUser = username;
@@ -72,12 +72,6 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/getGroups", async (req, res) => {
-  const dbres = await dbController.query("groups", {});
-  console.log("qurey from db", dbres);
-  res.send({ data: dbres });
-});
-
 router.post("/query", async (req, res) => {
   try {
     const colName = req.body.colName;
@@ -88,6 +82,12 @@ router.post("/query", async (req, res) => {
   } catch {
     res.send({ data: null, message: "query error" });
   }
+});
+
+router.post("/getGroups", async (req, res) => {
+  const dbres = await dbController.query("groups", {});
+  console.log("qurey from db", dbres);
+  res.send({ data: dbres });
 });
 
 router.get("*", (req, res) =>
