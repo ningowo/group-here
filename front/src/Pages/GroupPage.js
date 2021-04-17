@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-//import PostList from "../NavBar/PostList.js";
+import PostList from "../Components/PostList.js";
 
 // 这个不能删， 这里面用PostList Componnet，主页用GroupList Component，这是显示group详情de页面，可以把JoinGroup Component也加进来
 // 在这个page里再加一个join group的功能
@@ -12,7 +12,7 @@ export default function GroupPage() {
   const [PostName, setPostName] = useState("");
   const [postContent, setPostContent] = useState("");
   const [username, setUsername] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [group, setGroup] = useState([]);
   const [reload, setRelod] = useState(0);
 
   const params = useParams();
@@ -36,8 +36,8 @@ export default function GroupPage() {
 
   useEffect(() => {
     async function fetchdata() {
-      const data = {};
-      const resRaw = await fetch("/getGroups", {
+      const data = { colName: "groups", query: { group_name: params.id } };
+      const resRaw = await fetch("/query", {
         method: "POST",
         credentials: "same-origin",
         headers: {
@@ -47,11 +47,11 @@ export default function GroupPage() {
       });
       const res = await resRaw.json();
       console.log("res from be", res.data);
-      setPosts(res.data);
-      console.log("after set posts", posts);
+      setGroup(res.data[0]);
+      console.log("after set posts", group);
     }
     fetchdata();
-    console.log(posts);
+    console.log(group);
   }, [reload]);
 
   const createPost = async (event) => {
@@ -59,13 +59,16 @@ export default function GroupPage() {
   };
 
   const renderPost = async () => {};
+
   return (
     <div>
       <h2>{params.id}</h2>
       <div className="row">
         <div className="col-8">
           {/*posts在这里*/}
-          <div className="postDiv">{renderPost()}</div>
+          <div className="postDiv">
+            <PostList query={{ group: group.group_name }}></PostList>
+          </div>
           <form className="bg-light" onSubmit={createPost} hidden={!loginStat}>
             <h4>Create Post</h4>
             <div className="form-group">

@@ -1,83 +1,55 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-export default function JoinGroup(prop) {
-  let group;
-  let username;
-  const [inGroup, setInGroup] = useState(0);
+// 这个component还要再改改
+export default function JoinGroup(props) {
+  const { group, username } = props;
+  const [inGroup, setInGroup] = useState(false);
 
-  checkUserInGroup();
+  if (!username) {
+    return (
+      <div>
+        <a href="/toLogin">Sign in to join group</a>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    setInGroup(checkUserInGroup);
-  }, [inGroup, group, username]);
+  // 这里判断一下用户是否在组里
+  if (group.members.includes(username)) {
+    setInGroup(true);
+  } else {
+    setInGroup(false);
+  }
 
-  const checkUserInGroup = async () => {
-    const data = {
-      colName: "users",
-      query: { username: { username }, "groups.*": { group } },
-    };
-    const res = await (
-      await fetch("/query", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-    ).json();
-
-    console.log("join group query res", res.data);
-    return data ? 1 : 0;
-  };
-
-  const updateGroup = async (event) => {
+  const joinGroup = async (event) => {
     event.preventDefault();
-
-    const data = {
-      colName: "groups",
-      query: { member: { username } },
-    };
-    const res = await (
-      await fetch("/update", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-    ).json();
-
-    const data1 = {
-      colName: "users",
-      query: { groups: { group } },
-    };
-    const res1 = await (
-      await fetch("/update", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-    ).json();
+    // TODO: implement this later
   };
 
-  // ingroup == 1 for join
-  // first do the check, then update if click join button
-  if (inGroup === 1) {
+  if (inGroup) {
     return <div>joined</div>;
   } else {
     return (
-      <form onSubmit={updateGroup}>
-        <input type="hidden" className="joinGroupName" value={group} />
+      <form action="/joinGroup" method="GET">
+        <input
+          type="hidden"
+          className="joinGroupName"
+          value={group.group_name}
+        />
         <input type="hidden" className="joinUsername" value={username} />
-        <button className="btn btn-outline-primary" type="submit">
+        <button
+          className="btn btn-outline-primary"
+          type="button"
+          onclick={joinGroup}
+        >
           + Join group
         </button>
       </form>
     );
   }
 }
+
+JoinGroup.propTypes = {
+  group: PropTypes.object.isRequired,
+  username: PropTypes.string.isRequired,
+};

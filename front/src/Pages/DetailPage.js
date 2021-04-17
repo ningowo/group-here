@@ -1,40 +1,72 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { fetchEmployees } from "./fake-fetch";
+import CommentList from "../Components/CommentList.js";
 
 export default function DetailPage() {
   // const [isFetching, setFetching] = useState(false);
-  const [post, setpost] = useState([]);
-  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [post, setPost] = useState([]);
+  const [reload, setReload] = useState(0);
+
+  const [loginStat, setLoginState] = useState(false);
+  const [username, setUsername] = useState("");
 
   const params = useParams();
 
   console.log("params", params);
 
-  // useEffect(
-  //   function fetch() {
-  //     (async function () {
-  //       setFetching(true);
-  //       // setpost(await fetchEmployees(query));
-  //       setFetching(false);
-  //     })();
-  //   },
-  //   [query]
-  // );
+  useEffect(() => {
+    async function fetchUser() {
+      const res = await (await fetch("/isLogin")).json();
+      console.log(res);
+      if (!res.username) {
+        setLoginState(false);
+        setUsername("");
+      } else {
+        setLoginState(true);
+        setUsername(res.username);
+      }
+    }
+    fetchUser();
+  }, []);
 
-  // if (isFetching) {
-  //   return <div>Fetching employees....</div>;
-  // }
-  const renderComments = () => {
-    return comments.map((comment, i) => (
-      <div class="commentDiv" key={"Comment" + i}>
-        <div className="commentInfo">
-          {comment.author} {comment.create_date}
-        </div>
-        <div class="commentContent">{comment.content}</div>
-        <br></br>
-      </div>
-    ));
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = { colName: "posts", query: { post_name: params.id } };
+      const resRaw = await fetch("/query", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const res = await resRaw.json();
+      console.log("fetch post detail for detailpage from be", res);
+      setPost(res.data[0]);
+    };
+    fetchData();
+  }, [reload]);
+
+  // 移到 commentList component 里面去了
+  // const renderComments = (commentsInput) => {
+  //   return commentsInput ? (
+  //     commentsInput.map((comment) => (
+  //       <div class="commentDiv" key={comment._id}>
+  //         <div className="commentInfo">
+  //           {comment.author} {comment.create_date}
+  //         </div>
+  //         <div class="commentContent">{comment.content}</div>
+  //         <br></br>
+  //       </div>
+  //     ))
+  //   ) : (
+  //     <div></div>
+  //   );
+  // };
+
+  const createComment = async (event) => {
+    event.preventDefault();
   };
 
   return (
@@ -45,7 +77,37 @@ export default function DetailPage() {
         <div className="author">{post.author}</div>
         <div className="postContent">{post.content}</div>
         <br></br>
-        <div className="postComments">{renderComments()}</div>
+        <div className="postComments">
+          <CommentList query={{ post: post.post_name }}></CommentList>
+        </div>
+        <form className="bg-light" onSubmit={createComment}>
+          <h4>Create Comment</h4>
+          <div className="form-group">
+            <label className="form-label">commnet</label>
+            <input
+              type="text"
+              className="form-control"
+              name="group_name"
+              placeholder="Enter your groupName"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              required
+              id="username"
+            />
+          </div>
+          <div className="d-grid gap-2 btnDiv">
+            <button
+              className="btn btn-outline-primary"
+              type="submit"
+              hidden={!loginStat}
+            >
+              submit
+            </button>
+            <a href="/toLogin" hidden={loginStat}>
+              Login to create a comment
+            </a>
+          </div>
+        </form>
       </div>
       <div className="col-4">{/*右边是加入小组的选项*/}</div>
     </div>

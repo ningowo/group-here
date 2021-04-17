@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 
 const PostList = (props) => {
   const [posts, setPosts] = useState([]);
-  const { query } = props;
+  const query = props.query;
+  const limit = props.limit ? props.limit : 0;
 
   useEffect(() => {
     const fetchPostList = async () => {
-      const data = { colName: "posts", query: query };
+      const data = { colName: "posts", query: query, limit: limit };
       const res = await (
         await fetch("/query", {
           method: "POST",
@@ -19,42 +20,47 @@ const PostList = (props) => {
         })
       ).json();
       console.log("res from be", res.data);
-      //setPosts(res.data);
-      setPosts((prevPosts) => [...prevPosts, ...res.data]);
+      setPosts(res.data);
+      // setPosts(res.data);
       console.log("after setgroup", posts);
     };
     fetchPostList();
   }, []);
 
-  const renderPosts = () => {
-    return posts.map((post) => (
-      <div class="postDiv" key={post._id}>
-        <div class="likes">{post.likes} likes</div>
-        <div class="postContentDiv">
-          <h4>
-            <a href={"/detail/" + post.post_name}>{post.post_name}</a>
-          </h4>
-          <div class="postOverview">
-            <p>{post.content}</p>
+  const renderPosts = (postsInput) => {
+    return postsInput ? (
+      postsInput.map((post) => (
+        <div class="postDiv" key={post._id}>
+          <div class="likes">{post.likes} likes</div>
+          <div class="postContentDiv">
+            <h4>
+              <a href={"/detail/" + post.post_name}>{post.post_name}</a>
+            </h4>
+            <div class="postOverview">
+              <p>{post.content}</p>
+            </div>
+            <div class="source">
+              <span class="groupName">
+                From
+                <a href={"/group/" + post.group}>{post.group}</a>
+              </span>
+              <span class="create_time">{post.create_time}</span>
+            </div>
           </div>
-          <div class="source">
-            <span class="groupName">
-              From
-              <a href={"/group/" + post.group}>{post.group}</a>
-            </span>
-            <span class="create_time">{post.create_time}</span>
-          </div>
+          <br></br>
         </div>
-        <br></br>
-      </div>
-    ));
+      ))
+    ) : (
+      <div></div>
+    );
   };
 
-  return <div className="posts">{renderPosts()}</div>;
+  return <div className="posts">{renderPosts(posts)}</div>;
 };
 
 PostList.propTypes = {
   query: PropTypes.object.isRequired,
+  limit: PropTypes.number,
 };
 
 export default PostList;

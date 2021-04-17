@@ -78,29 +78,29 @@ export default function HomePage() {
   // 这个模块用PostList，这里的可以挪过去了。我基本都写好了直接用就可以
   //然后我的想法是选出点赞数最多的post按顺序放在homepage左侧，grouplist在右边
   // 还有数据库的post里加个点赞数
-  const renderPost = (groupsInput) => {
-    let res = [];
+  // const renderPost = (groupsInput) => {
+  //   let res = [];
 
-    console.log("groupsInput", groupsInput);
+  //   console.log("groupsInput", groupsInput);
 
-    for (let group of groupsInput ?? []) {
-      let groupRep = [];
-      groupRep.push(
-        <h3 className="groupName card" key={group._id}>
-          <a href={"/group/" + group.group_name}>{group.group_name}</a>
-        </h3>
-      );
-      for (let post of group.posts ?? []) {
-        groupRep.push(
-          <div className="postName card" key={group._id + post}>
-            <a href={"/detail/" + post}>{post}</a>
-          </div>
-        );
-      }
-      res.push(groupRep);
-    }
-    return res;
-  };
+  //   for (let group of groupsInput ?? []) {
+  //     let groupRep = [];
+  //     groupRep.push(
+  //       <h3 className="groupName card" key={group._id}>
+  //         <a href={"/group/" + group.group_name}>{group.group_name}</a>
+  //       </h3>
+  //     );
+  //     for (let post of group.posts ?? []) {
+  //       groupRep.push(
+  //         <div className="postName card" key={group._id + post}>
+  //           <a href={"/detail/" + post}>{post}</a>
+  //         </div>
+  //       );
+  //     }
+  //     res.push(groupRep);
+  //   }
+  //   return res;
+  // };
 
   return (
     <div className="container main-container">

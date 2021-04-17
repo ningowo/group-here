@@ -19,7 +19,7 @@ function DBController() {
       console.log("Collection ready, insert", colName, post);
       const res = await col.insertOne(post, (error, dbres) => {
         if (error) {
-          console.log("Created error", error.log());
+          console.log("Created error", error);
         } else {
           console.log("create,", dbres.ops[0]);
           return dbres.ops[0];
@@ -71,7 +71,7 @@ function DBController() {
     }
   };
 
-  dbController.query = async (colName, query) => {
+  dbController.query = async (colName, query, limit = 0) => {
     let client;
     try {
       client = new MongoClient(url, { useUnifiedTopology: true });
@@ -80,7 +80,7 @@ function DBController() {
       const db = client.db(DB_NAME);
       const col = db.collection(colName);
       console.log("Collection ready, delete", colName, query.toString());
-      const res = await col.find(query).toArray();
+      const res = await col.find(query).limit(limit).toArray();
       console.log("got", res);
 
       return res;

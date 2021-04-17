@@ -11,7 +11,7 @@ router.post("/getPost", function (req, res) {
   res.send(post);
 });
 
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const user = await dbController.findUserByName(username);
@@ -75,9 +75,10 @@ router.post("/create", async (req, res) => {
 router.post("/query", async (req, res) => {
   try {
     const colName = req.body.colName;
-    const data = req.body.query;
+    const query = req.body.query;
+    const limit = req.body.limit ? req.body.limit : 0;
     console.log(colName, query);
-    const res = await dbController.query(colName, data);
+    const dbres = await dbController.query(colName, query, limit);
     res.send({ data: dbres, message: "successfully query" });
   } catch {
     res.send({ data: null, message: "query error" });
