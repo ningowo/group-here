@@ -41,7 +41,6 @@ const GroupList = (props) => {
           {/*<div className="groupMemberNum">{group.members.length}</div>*/}
           {/*<PostList query={{ group: group.group_name }} limit={5} />*/}
           {/*<JoinGroup username={username} group={group}></JoinGroup>*/}
-          <br></br>
         </div>
       ))
     ) : (

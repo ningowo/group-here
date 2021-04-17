@@ -107,7 +107,7 @@ export default function HomePage() {
       <h4> Explore</h4>
       <br></br>
       <div className="row">
-        <div className="col-8">
+        <div className="col-9">
           <PostList query={{}} limit={20}></PostList>
           {/*//这里我之后再改改 按点赞数*/}
           <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
@@ -140,7 +140,9 @@ export default function HomePage() {
             </div>
           </form>
         </div>
-        <div className="col-4">
+        <div className="col-3 recommendGroups">
+          <p>Groups Worth Joining</p>
+          <hr></hr>
           <GroupList username={username} query={{}} reload={reload}></GroupList>
         </div>
       </div>

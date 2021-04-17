@@ -60,7 +60,7 @@ export default function DetailPage() {
         <div className="postName">{post.post_name}</div>
         <div className="author">{post.author}</div>
         <div className="postContent">{post.content}</div>
-        <br></br>
+        <hr></hr>
         <div className="postComments">
           <CommentList query={{ post: post.post_name }}></CommentList>
         </div>

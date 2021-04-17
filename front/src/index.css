@@ -1,3 +1,7 @@
 body {
   font-family: sans-serif;
 }
+
+nav {
+  background-color: rgba(122, 137, 227, 0.5) !important;
+}
