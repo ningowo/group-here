@@ -47,7 +47,7 @@ export default function GroupPage() {
       });
       const res = await resRaw.json();
       console.log("res from be", res.data);
-      setGroup(res.data[0]);
+      setGroup(res.data);
       console.log("after set posts", group);
     }
     fetchdata();
