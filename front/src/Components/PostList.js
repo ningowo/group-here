@@ -27,6 +27,8 @@ const PostList = (props) => {
     fetchPostList();
   }, []);
 
+  console.log("props in postlist", query);
+
   const renderPosts = (postsInput) => {
     return postsInput ? (
       postsInput.map((post) => (

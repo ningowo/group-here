@@ -48,23 +48,6 @@ export default function DetailPage() {
     fetchData();
   }, [reload]);
 
-  // 移到 commentList component 里面去了
-  // const renderComments = (commentsInput) => {
-  //   return commentsInput ? (
-  //     commentsInput.map((comment) => (
-  //       <div class="commentDiv" key={comment._id}>
-  //         <div className="commentInfo">
-  //           {comment.author} {comment.create_date}
-  //         </div>
-  //         <div class="commentContent">{comment.content}</div>
-  //         <br></br>
-  //       </div>
-  //     ))
-  //   ) : (
-  //     <div></div>
-  //   );
-  // };
-
   const createComment = async (event) => {
     event.preventDefault();
   };
