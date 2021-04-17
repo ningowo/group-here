@@ -16,23 +16,21 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
-        <NavBarGlobal></NavBarGlobal>
-        <Switch>
-          <Route path="/toLogin">
-            <LoginPage></LoginPage>
-          </Route>
-          <Route path="/toSignUp">
-            <SignUpPage></SignUpPage>
-          </Route>
-          <Route path="/detail/:id" children={<DetailPage />} />
-          <Route path="/group/:id" children={<GroupPage />} />
-          <Route path="/">
-            <HomePage></HomePage>
-          </Route>
-        </Switch>
-        <footer>Made by Ning & Tiange</footer>
-      </div>
+      <NavBarGlobal></NavBarGlobal>
+      <Switch>
+        <Route path="/toLogin">
+          <LoginPage></LoginPage>
+        </Route>
+        <Route path="/toSignUp">
+          <SignUpPage></SignUpPage>
+        </Route>
+        <Route path="/detail/:id" children={<DetailPage />} />
+        <Route path="/group/:id" children={<GroupPage />} />
+        <Route path="/">
+          <HomePage></HomePage>
+        </Route>
+      </Switch>
+      <footer>Made by Ning & Tiange</footer>
     </Router>
   );
 }

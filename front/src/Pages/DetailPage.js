@@ -57,13 +57,14 @@ export default function DetailPage() {
     <div className="DetailPage">
       {/*左边是具体的post内容和评论*/}
       <div className="col-8 postDetailDiv">
-        <div className="postName">{post.post_name}</div>
-        <div className="author">{post.author}</div>
+        <h4 className="postName">{post.post_name}</h4>
+        <div className="author">By {post.author}</div>
+        <p></p>
         <div className="postContent">{post.content}</div>
         <hr></hr>
-        <div className="postComments">
+        {/*        <div className="postComments">
           <CommentList query={{ post: post.post_name }}></CommentList>
-        </div>
+        </div>*/}
         <form className="bg-light" onSubmit={createComment} hidden={true}>
           <h4>Create Comment</h4>
           <div className="form-group">

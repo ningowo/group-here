@@ -33,8 +33,8 @@ const GroupList = (props) => {
   const renderGroups = (groupsInput) => {
     return groupsInput ? (
       groupsInput.map((group) => (
-        <div class="groupDiv" key={group._id}>
-          <div class="groupName">
+        <div className="groupDiv" key={group._id}>
+          <div className="groupName">
             <a href={"/group/" + group.group_name}>{group.group_name}</a>
           </div>
           {/*下面这行想统计一下小组里的人数，不过如果最后不方便写也可以删了*/}

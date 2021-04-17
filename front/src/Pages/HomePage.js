@@ -29,7 +29,6 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchdata() {
       const data = { colName: "groups", query: {} };
-      // 我这里getGroups是404
       const res = await (
         await fetch("/query", {
           method: "POST",
@@ -56,7 +55,6 @@ export default function HomePage() {
       colName: "groups",
       data: { author: username, group_name: groupName },
     };
-    // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
     const resRaw = await fetch("/create", {
       method: "POST",
       credentials: "same-origin",
@@ -71,45 +69,19 @@ export default function HomePage() {
     setGroupName("");
 
     setRelod(reload + 1);
+    alert("Created!");
 
     console.log("reload", reload);
   };
 
-  // 这个模块用PostList，这里的可以挪过去了。我基本都写好了直接用就可以
-  //然后我的想法是选出点赞数最多的post按顺序放在homepage左侧，grouplist在右边
-  // 还有数据库的post里加个点赞数
-  // const renderPost = (groupsInput) => {
-  //   let res = [];
-
-  //   console.log("groupsInput", groupsInput);
-
-  //   for (let group of groupsInput ?? []) {
-  //     let groupRep = [];
-  //     groupRep.push(
-  //       <h3 className="groupName card" key={group._id}>
-  //         <a href={"/group/" + group.group_name}>{group.group_name}</a>
-  //       </h3>
-  //     );
-  //     for (let post of group.posts ?? []) {
-  //       groupRep.push(
-  //         <div className="postName card" key={group._id + post}>
-  //           <a href={"/detail/" + post}>{post}</a>
-  //         </div>
-  //       );
-  //     }
-  //     res.push(groupRep);
-  //   }
-  //   return res;
-  // };
-
   return (
     <div className="container main-container">
-      <h4> Explore</h4>
-      <br></br>
       <div className="row">
         <div className="col-9">
+          <h4>Explore</h4>
+          <hr></hr>
           <PostList query={{}} limit={20}></PostList>
-          {/*//这里我之后再改改 按点赞数*/}
+          <p hidden={loginStat}>Login to create your Group!</p>
           <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
             <h4>Create Group</h4>
             <div className="form-group">
@@ -140,10 +112,16 @@ export default function HomePage() {
             </div>
           </form>
         </div>
-        <div className="col-3 recommendGroups">
-          <p>Groups Worth Joining</p>
-          <hr></hr>
-          <GroupList username={username} query={{}} reload={reload}></GroupList>
+        <div className="col-3 ">
+          <div className="recommendGroups">
+            <p>Groups Worth Joining</p>
+            <hr></hr>
+            <GroupList
+              username={username}
+              query={{}}
+              reload={reload}
+            ></GroupList>
+          </div>
         </div>
       </div>
     </div>

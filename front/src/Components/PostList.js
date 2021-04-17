@@ -33,10 +33,10 @@ const PostList = (props) => {
     return postsInput ? (
       postsInput.map((post) => (
         <div class="postDiv" key={post._id}>
-          {/*        <div class="likes">
+          <div class="likes">
             <span>❤</span>
-            <span>{post.likes} likes</span>{" "}
-          </div>*/}
+            {/*<span>{post.likes} likes</span>*/}
+          </div>
           <div class="postContentDiv">
             <h5>
               <a href={"/detail/" + post.post_name}>{post.post_name}</a>
@@ -52,7 +52,6 @@ const PostList = (props) => {
               {/*<span class="create_time"> {post.create_time}</span>*/}
             </div>
           </div>
-          <hr></hr>
         </div>
       ))
     ) : (
