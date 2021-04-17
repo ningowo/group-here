@@ -29,23 +29,7 @@ export default function JoinGroup(props) {
   if (inGroup) {
     return <div>joined</div>;
   } else {
-    return (
-      <form action="/joinGroup" method="GET">
-        <input
-          type="hidden"
-          className="joinGroupName"
-          value={group.group_name}
-        />
-        <input type="hidden" className="joinUsername" value={username} />
-        <button
-          className="btn btn-outline-primary"
-          type="button"
-          onclick={joinGroup}
-        >
-          + Join group
-        </button>
-      </form>
-    );
+    return <button onclick={joinGroup}> Join Group</button>;
   }
 }
 
