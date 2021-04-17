@@ -67,6 +67,7 @@ export default function DetailPage() {
 
   const createComment = async (event) => {
     event.preventDefault();
+    // TODO: impelement create comment
   };
 
   return (

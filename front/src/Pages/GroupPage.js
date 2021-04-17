@@ -9,7 +9,7 @@ import PostList from "../Components/PostList.js";
 export default function GroupPage() {
   const [loginStat, setLoginState] = useState(false);
   const [validPostName, isValidPostName] = useState(true);
-  const [PostName, setPostName] = useState("");
+  const [postName, setPostName] = useState("");
   const [postContent, setPostContent] = useState("");
   const [username, setUsername] = useState("");
   const [group, setGroup] = useState([]);
@@ -62,6 +62,37 @@ export default function GroupPage() {
   const createPost = async (event) => {
     event.preventDefault();
     // TODO: implement create post
+    // const date = new Date("<YYYY-mm-ddTHH:MM:ss>");
+
+    // const data = {
+    //   colName: "posts",
+    //   data: {
+    //     post_name: postName,
+    //     author: username,
+    //     group: groupName,
+    //     create_time: date,
+    //     content: postContent,
+    //     comments: [],
+    //   },
+    // };
+    // // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
+    // const resRaw = await fetch("/create", {
+    //   method: "POST",
+    //   credentials: "same-origin",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // });
+
+    // console.log("create post res", resRaw);
+
+    // setPostName("");
+    // setPostContent("");
+
+    // setRelod(reload + 1);
+
+    // console.log("reload", reload);
   };
 
   console.log("after set group in group page before return", group);
@@ -73,6 +104,7 @@ export default function GroupPage() {
         <div className="col-8">
           {/*posts在这里*/}
           <div className="postDiv">
+            {console.log("groupName in render", groupName)}
             <PostList query={{ group: groupName }}></PostList>
           </div>
           <form className="bg-light" onSubmit={createPost} hidden={!loginStat}>
@@ -84,7 +116,7 @@ export default function GroupPage() {
                 className="form-control"
                 name="group_name"
                 placeholder="Enter your post name"
-                value={PostName}
+                value={postName}
                 onChange={(e) => setPostName(e.target.value)}
                 required
                 id="username"
