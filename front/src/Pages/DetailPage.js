@@ -48,23 +48,6 @@ export default function DetailPage() {
     fetchData();
   }, [reload]);
 
-  // 移到 commentList component 里面去了
-  // const renderComments = (commentsInput) => {
-  //   return commentsInput ? (
-  //     commentsInput.map((comment) => (
-  //       <div class="commentDiv" key={comment._id}>
-  //         <div className="commentInfo">
-  //           {comment.author} {comment.create_date}
-  //         </div>
-  //         <div class="commentContent">{comment.content}</div>
-  //         <br></br>
-  //       </div>
-  //     ))
-  //   ) : (
-  //     <div></div>
-  //   );
-  // };
-
   const createComment = async (event) => {
     event.preventDefault();
     // TODO: impelement create comment
@@ -74,13 +57,14 @@ export default function DetailPage() {
     <div className="DetailPage">
       {/*左边是具体的post内容和评论*/}
       <div className="col-8 postDetailDiv">
-        <div className="postName">{post.post_name}</div>
-        <div className="author">{post.author}</div>
+        <h4 className="postName">{post.post_name}</h4>
+        <div className="author">By {post.author}</div>
+        <p></p>
         <div className="postContent">{post.content}</div>
-        <br></br>
-        <div className="postComments">
+        <hr></hr>
+        {/*        <div className="postComments">
           <CommentList query={{ post: post.post_name }}></CommentList>
-        </div>
+        </div>*/}
         <form className="bg-light" onSubmit={createComment} hidden={true}>
           <h4>Create Comment</h4>
           <div className="form-group">

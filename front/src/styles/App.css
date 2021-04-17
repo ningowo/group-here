@@ -34,26 +34,50 @@ input {
 }
 
 footer {
-  margin-top: 30px;
+  margin: 30px;
   text-align: center;
 }
 
 .main-container {
-  margin: 20px;
+  margin: 50px auto;
+  max-width: 1100px;
+}
+
+.recommendGroups {
+  padding: 20px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #bcc4f1;
 }
 
 .groupDiv,
 .postDiv {
   margin: 10px;
+}
+
+.posts .postDiv {
+  margin: 0px;
   padding: 10px;
-  display: flex;
-  /*  border-radius: 5px;
-  border-style: solid;
-  border-color: rgba(0.5, 0.5, 0.5, 0.5);*/
+}
+
+.detailPage {
+  min-height: 500px;
+}
+
+.postDetailDiv {
+  margin: 40px auto;
+}
+
+.posts {
+  margin-right: 30px;
 }
 
 .postContentDiv .likes {
   display: inline-block;
+}
+
+h4 {
+  margin: 0 0px;
 }
 
 a {
@@ -61,24 +85,45 @@ a {
   color: black;
 }
 
-form a {
-  text-decoration: underline #0d6efd;
-  color: #0d6efd;
+form a,
+span a {
+  text-decoration: underline #6373cc;
+  color: #6373cc;
 }
 
-.likes,
+.postContentDiv a,
+.groupName a {
+  text-decoration: none;
+  color: #6373cc;
+}
+
+#mainIcon {
+  width: 50px;
+}
+
+.likes {
+  float: left;
+  margin-right: 20px;
+  padding: 10px 0;
+  width: 30px;
+  line-height: 4;
+  text-align: center;
+  font-size: 20px;
+  color: #bd2b2b;
+}
+
 .postContentDiv {
-  margin: 5px;
-  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 div span {
   display: flex;
 }
-
+/*
 .source {
   display: flex;
-}
+}*/
 
 h2 {
   margin: 10px;

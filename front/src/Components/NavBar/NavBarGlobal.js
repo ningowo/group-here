@@ -3,9 +3,14 @@ import NavUser from "./NavUser.js";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light ">
       <div className="container-fluid">
-
+        <img
+          id="mainIcon"
+          src="/mainIcon.png"
+          alt="graph appear in title"
+        ></img>
+        <span>&nbsp;&nbsp;</span>
         <a className="navbar-brand" href="/homepage">
           Group Here
         </a>
