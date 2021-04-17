@@ -17,17 +17,10 @@ function DBController() {
       const db = client.db(DB_NAME);
       const col = db.collection(colName);
       console.log("Collection ready, insert", colName, post);
-      const res = await col.insertOne(post, (error, dbres) => {
-        if (error) {
-          console.log("Created error", error);
-        } else {
-          console.log("create,", dbres.ops[0]);
-          return dbres.ops[0];
-        }
-      });
+      const res = await col.insertOne(post);
       // console.log("Inserted", res);
 
-      return res;
+      return res.ops[0];
     } finally {
       console.log("Closing the connection");
       client.close();
