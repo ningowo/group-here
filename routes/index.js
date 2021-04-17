@@ -85,12 +85,6 @@ router.post("/query", async (req, res) => {
   }
 });
 
-router.post("/getGroups", async (req, res) => {
-  const dbres = await dbController.query("groups", {});
-  console.log("qurey from db", dbres);
-  res.send({ data: dbres });
-});
-
 router.get("*", (req, res) =>
   res.sendFile(path.resolve("front", "build", "index.html"))
 );

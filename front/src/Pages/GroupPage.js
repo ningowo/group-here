@@ -13,6 +13,7 @@ export default function GroupPage() {
   const [postContent, setPostContent] = useState("");
   const [username, setUsername] = useState("");
   const [group, setGroup] = useState([]);
+  const [groupName, setGroupName] = useState("");
   const [reload, setRelod] = useState(0);
 
   const params = useParams();
@@ -48,17 +49,22 @@ export default function GroupPage() {
       const res = await resRaw.json();
       console.log("res from be", res.data);
       setGroup(res.data[0]);
-      console.log("after set posts", group);
+      // console.log("after set group in group page", group);
     }
     fetchdata();
-    console.log(group);
+    // console.log(group);
   }, [reload]);
+
+  useEffect(() => {
+    setGroupName(group.group_name);
+  }, [group]);
 
   const createPost = async (event) => {
     event.preventDefault();
+    // TODO: implement create post
   };
 
-  const renderPost = async () => {};
+  console.log("after set group in group page before return", group);
 
   return (
     <div>
@@ -67,7 +73,7 @@ export default function GroupPage() {
         <div className="col-8">
           {/*posts在这里*/}
           <div className="postDiv">
-            <PostList query={{ group: group.group_name }}></PostList>
+            <PostList query={{ group: groupName }}></PostList>
           </div>
           <form className="bg-light" onSubmit={createPost} hidden={!loginStat}>
             <h4>Create Post</h4>
