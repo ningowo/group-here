@@ -5,7 +5,7 @@ import PostList from "./PostList.js";
 
 const GroupList = (props) => {
   const [groups, setGroups] = useState([]);
-  const { query, username } = props;
+  const { query, username, reload } = props;
 
   useEffect(() => {
     const fetchPostList = async () => {
@@ -28,7 +28,7 @@ const GroupList = (props) => {
       console.log("after setgroup", groups);
     };
     fetchPostList();
-  }, []);
+  }, [reload]);
 
   const renderGroups = (groupsInput) => {
     return groupsInput ? (
@@ -39,7 +39,7 @@ const GroupList = (props) => {
           </div>
           {/*下面这行想统计一下小组里的人数，不过如果最后不方便写也可以删了*/}
           {/*<div className="groupMemberNum">{group.members.length}</div>*/}
-          <PostList query={{ group: group.group_name }} limit={5} />
+          {/*<PostList query={{ group: group.group_name }} limit={5} />*/}
           {/*<JoinGroup username={username} group={group}></JoinGroup>*/}
           <br></br>
         </div>
@@ -55,6 +55,7 @@ const GroupList = (props) => {
 GroupList.propTypes = {
   query: PropTypes.object.isRequired,
   username: PropTypes.string.isRequired,
+  reload: PropTypes.number.isRequired,
 };
 
 export default GroupList;

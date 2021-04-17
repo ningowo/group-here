@@ -81,7 +81,7 @@ export default function DetailPage() {
         <div className="postComments">
           <CommentList query={{ post: post.post_name }}></CommentList>
         </div>
-        <form className="bg-light" onSubmit={createComment}>
+        <form className="bg-light" onSubmit={createComment} hidden={true}>
           <h4>Create Comment</h4>
           <div className="form-group">
             <label className="form-label">commnet</label>

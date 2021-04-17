@@ -108,7 +108,7 @@ export default function HomePage() {
       <br></br>
       <div className="row">
         <div className="col-8">
-          {/*<PostList posts={posts}></PostList> */}
+          <PostList query={{}} limit={20}></PostList>
           {/*//这里我之后再改改 按点赞数*/}
           <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
             <h4>Create Group</h4>
@@ -141,7 +141,7 @@ export default function HomePage() {
           </form>
         </div>
         <div className="col-4">
-          <GroupList username={username} query={{}}></GroupList>
+          <GroupList username={username} query={{}} reload={reload}></GroupList>
         </div>
       </div>
     </div>

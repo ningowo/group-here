@@ -25,7 +25,7 @@ const PostList = (props) => {
       console.log("after setgroup", posts);
     };
     fetchPostList();
-  }, []);
+  }, [query]);
 
   console.log("props in postlist", query);
 
