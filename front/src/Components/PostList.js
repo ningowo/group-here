@@ -5,6 +5,8 @@ const PostList = (props) => {
   const [posts, setPosts] = useState([]);
   const query = props.query;
   const limit = props.limit ? props.limit : 0;
+  const [postPage, setPostPage] = useState(0);
+  const postPerPage = 50;
 
   useEffect(() => {
     const fetchPostList = async () => {
@@ -31,35 +33,58 @@ const PostList = (props) => {
 
   const renderPosts = (postsInput) => {
     return postsInput ? (
-      postsInput.map((post) => (
-        <div class="postDiv" key={post._id}>
-          <div class="likes">
-            <span>❤</span>
-            {/*<span>{post.likes} likes</span>*/}
-          </div>
-          <div class="postContentDiv">
-            <h5>
-              <a href={"/detail/" + post.post_name}>{post.post_name}</a>
-            </h5>
-            <div class="postOverview">
-              <p>{post.content}</p>
+      postsInput
+        .slice(postPage * postPerPage, (postPage + 1) * postPerPage)
+        .map((post) => (
+          <div class="postDiv" key={post._id}>
+            <div class="likes">
+              <span>❤</span>
+              {/*<span>{post.likes} likes</span>*/}
             </div>
-            <div class="source">
-              <span class="groupName">
-                From &nbsp;
-                <a href={"/group/" + post.group}>{post.group}</a>
-              </span>
-              {/*<span class="create_time"> {post.create_time}</span>*/}
+            <div class="postContentDiv">
+              <h5>
+                <a href={"/detail/" + post.post_name}>{post.post_name}</a>
+              </h5>
+              <div class="postOverview">
+                <p>{post.content}</p>
+              </div>
+              <div class="source">
+                <span class="groupName">
+                  From &nbsp;
+                  <a href={"/group/" + post.group}>{post.group}</a>
+                </span>
+                {/*<span class="create_time"> {post.create_time}</span>*/}
+              </div>
             </div>
           </div>
-        </div>
-      ))
+        ))
     ) : (
       <div></div>
     );
   };
 
-  return <div className="posts">{renderPosts(posts)}</div>;
+  return (
+    <div>
+      <div className="posts">{renderPosts(posts)}</div>
+      <span>
+        page{"   "}
+        {[...Array(Math.ceil(posts.length / postPerPage)).keys()].map((v) =>
+          v === postPage ? (
+            <div
+              className="pageClickDivSelect"
+              onClick={(event) => setPostPage(v)}
+            >
+              {v}
+            </div>
+          ) : (
+            <div className="pageClickDiv" onClick={(event) => setPostPage(v)}>
+              {v}
+            </div>
+          )
+        )}
+      </span>
+    </div>
+  );
 };
 
 PostList.propTypes = {

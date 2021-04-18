@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import PostList from "../Components/PostList.js";
 
 // 这个不能删， 这里面用PostList Componnet，主页用GroupList Component，这是显示group详情de页面，可以把JoinGroup Component也加进来
-// 在这个page里再加一个join group的功能
+// http://localhost:3001/homepage// 在这个page里再加一个join group的功能
 // -- 加了
 
 export default function GroupPage() {
@@ -12,13 +12,10 @@ export default function GroupPage() {
   const [postName, setPostName] = useState("");
   const [postContent, setPostContent] = useState("");
   const [username, setUsername] = useState("");
-  const [group, setGroup] = useState([]);
-  const [groupName, setGroupName] = useState("");
+  const [group, setGroup] = useState({ group_name: "" });
   const [reload, setRelod] = useState(0);
 
   const params = useParams();
-
-  console.log("groupPage", params);
 
   useEffect(() => {
     async function fetchUser() {
@@ -54,49 +51,53 @@ export default function GroupPage() {
     }
     fetchdata();
     // console.log(group);
-  }, [reload]);
-
-  useEffect(() => {
-    setGroupName(group.group_name);
-  }, [group]);
+  }, [reload, params]);
 
   const createPost = async (event) => {
     event.preventDefault();
     // TODO: implement create post
-    // const date = new Date("<YYYY-mm-ddTHH:MM:ss>");
+    const date = new Date("<YYYY-mm-ddTHH:MM:ss>");
 
-    // const data = {
-    //   colName: "posts",
-    //   data: {
-    //     post_name: postName,
-    //     author: username,
-    //     group: groupName,
-    //     create_time: date,
-    //     content: postContent,
-    //     comments: [],
-    //   },
-    // };
-    // // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
-    // const resRaw = await fetch("/create", {
-    //   method: "POST",
-    //   credentials: "same-origin",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
+    const data = {
+      colName: "posts",
+      data: {
+        post_name: postName,
+        author: username,
+        group: group.group_name,
+        create_time: date,
+        content: postContent,
+        comments: [],
+      },
+    };
+    // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
+    const resRaw = await fetch("/create", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-    // console.log("create post res", resRaw);
+    console.log("create post res", resRaw);
 
-    // setPostName("");
-    // setPostContent("");
+    setPostName("");
+    setPostContent("");
 
-    // setRelod(reload + 1);
+    setRelod(reload + 1);
 
-    // console.log("reload", reload);
+    console.log("reload", reload);
   };
 
-  console.log("after set group in group page before return", group);
+  // return (
+  //   <div>
+  //     <PostList query={{ group: groupName }}></PostList>
+  //   </div>
+  // );
+
+  if (!group) {
+    return null;
+  }
 
   return (
     <div>
@@ -105,8 +106,7 @@ export default function GroupPage() {
         <div className="col-8">
           {/*posts在这里*/}
           <div className="postDiv">
-            {console.log("groupName in render", groupName)}
-            <PostList query={{ group: groupName }}></PostList>
+            <PostList query={{ group: group.group_name }}></PostList>
           </div>
           <form className="bg-light" onSubmit={createPost} hidden={!loginStat}>
             <h4>Create Post</h4>

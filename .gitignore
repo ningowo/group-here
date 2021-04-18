@@ -108,3 +108,5 @@ dist
 
 upload_data.js
 MOCK_DATA.json
+
+.idea/*

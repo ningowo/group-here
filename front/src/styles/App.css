@@ -129,3 +129,15 @@ h2 {
   margin: 10px;
   padding: 10px;
 }
+
+.pageClickDivSelect {
+  margin-left: 20px;
+  color: red;
+  cursor: pointer;
+}
+
+.pageClickDiv {
+  margin-left: 20px;
+  color: blue;
+  cursor: pointer;
+}
