@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PostList from "../Components/PostList.js";
-
-// 这个不能删， 这里面用PostList Componnet，主页用GroupList Component，这是显示group详情de页面，可以把JoinGroup Component也加进来
-// http://localhost:3001/homepage// 在这个page里再加一个join group的功能
-// -- 加了
+import GroupList from "../Components/GroupList.js";
 
 export default function GroupPage() {
   const [loginStat, setLoginState] = useState(false);
@@ -69,7 +66,7 @@ export default function GroupPage() {
         comments: [],
       },
     };
-    // 这里不知道为什么，create返回的是{  "data": null, "message": "query error"}， 添加失败
+
     const resRaw = await fetch("/create", {
       method: "POST",
       credentials: "same-origin",
@@ -89,22 +86,20 @@ export default function GroupPage() {
     console.log("reload", reload);
   };
 
-  // return (
-  //   <div>
-  //     <PostList query={{ group: groupName }}></PostList>
-  //   </div>
-  // );
-
   if (!group) {
-    return null;
+    return (
+      <div className="main-container container">
+        <span>Login to create the first post!</span>
+        <div>{createPost}</div>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className="main-container container">
       <h2>{params.id}</h2>
       <div className="row">
-        <div className="col-8">
-          {/*posts在这里*/}
+        <div className="col-9">
           <div className="postDiv">
             <PostList query={{ group: group.group_name }}></PostList>
           </div>
@@ -152,7 +147,13 @@ export default function GroupPage() {
             </div>
           </form>
         </div>
-        <div className="col-4"></div>
+        <div className="col-3">
+          <div className="recommendGroups">
+            <p>Groups Recommended</p>
+            <hr></hr>
+            <GroupList query={{}}></GroupList>
+          </div>
+        </div>
       </div>
     </div>
   );

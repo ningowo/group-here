@@ -30,7 +30,6 @@ function App() {
           <HomePage></HomePage>
         </Route>
       </Switch>
-      <footer>Made by Ning & Tiange</footer>
     </Router>
   );
 }

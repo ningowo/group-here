@@ -6,14 +6,16 @@ export default function NavBar() {
     <nav className="navbar navbar-expand-lg navbar-light ">
       <div className="container-fluid">
         <img
-          id="mainIcon"
-          src="/mainIcon.png"
+          id="titleIcon"
+          src="/titleIcon.png"
           alt="graph appear in title"
         ></img>
         <span>&nbsp;&nbsp;</span>
+
         <a className="navbar-brand" href="/homepage">
-          Group Here
+          <h3>Group Here</h3>
         </a>
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">

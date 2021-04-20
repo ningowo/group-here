@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import JoinGroup from "./JoinGroup.js";
-import PostList from "./PostList.js";
 
 const GroupList = (props) => {
   const [groups, setGroups] = useState([]);
-  const { query, username, reload } = props;
+  const { query, reload } = props;
 
   useEffect(() => {
     const fetchPostList = async () => {
-      //console.log("query is ", query);
       const data = { colName: "groups", query: query };
-      const res = await // await fetch("/getGroups", {
-      (
+      const res = await (
         await fetch("/query", {
           method: "POST",
           credentials: "same-origin",
@@ -22,10 +19,9 @@ const GroupList = (props) => {
           body: JSON.stringify(data),
         })
       ).json();
-      console.log("res from be", res.data);
+      //console.log("res from be", res.data);
       setGroups(res.data);
-      // setGroups((prevGroups) => [...prevGroups, ...res.data]);
-      console.log("after setgroup", groups);
+      //console.log("after setgroup", groups);
     };
     fetchPostList();
   }, [reload]);
@@ -37,9 +33,8 @@ const GroupList = (props) => {
           <div className="groupName">
             <a href={"/group/" + group.group_name}>{group.group_name}</a>
           </div>
-          {/*下面这行想统计一下小组里的人数，不过如果最后不方便写也可以删了*/}
+          {/*统计一下小组人数*/}
           {/*<div className="groupMemberNum">{group.members.length}</div>*/}
-          {/*<PostList query={{ group: group.group_name }} limit={5} />*/}
           {/*<JoinGroup username={username} group={group}></JoinGroup>*/}
         </div>
       ))
@@ -47,7 +42,6 @@ const GroupList = (props) => {
       <div></div>
     );
   };
-
   return <div className="groupList">{renderGroups(groups)}</div>;
 };
 

@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 const CommentList = (props) => {
   const [comments, setComments] = useState([]);
-  const query = props.query;
-  const limit = props.limit ? props.limit : 0;
+  const { query, reload } = props;
+  //const limit = props.limit ? props.limit : 0;
 
   useEffect(() => {
     const fetchCommentsList = async () => {
-      const data = { colName: "comments", query: query, limit: limit };
+      const data = { colName: "comments", query: query };
       const res = await (
         await fetch("/query", {
           method: "POST",
@@ -19,27 +19,29 @@ const CommentList = (props) => {
           body: JSON.stringify(data),
         })
       ).json();
-      console.log("res from be", res.data);
+      console.log("res data for comment: ", res.data);
       setComments(res.data);
-      // setPosts(res.data);
-      console.log("after setgroup", comments);
+      console.log("comments: ", comments);
     };
     fetchCommentsList();
-  }, []);
+  }, [reload]);
 
   const renderComments = (commentsInput) => {
+    console.log("render comments: ", commentsInput);
     return commentsInput ? (
       commentsInput.map((comment) => (
-        <div class="commentDiv" key={comment._id}>
+        <div className="commentDiv" key={comment._id}>
           <div className="commentInfo">
             {comment.author} {comment.create_date}
           </div>
-          <div class="commentContent">{comment.content}</div>
+          <div className="commentContent">{comment.content}</div>
           <br></br>
         </div>
       ))
     ) : (
-      <div></div>
+      <div>
+        <p>To be commented.</p>
+      </div>
     );
   };
 
