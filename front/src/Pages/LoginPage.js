@@ -80,7 +80,10 @@ export default function LoginPage() {
         <div block className="alert-danger" role="alert" hidden={validUser}>
           Invalid username or password
         </div>
-        New to Group Here? <a href="/toSignUp">create an account</a>
+        <span className="message">
+          New to Group Here?&nbsp;&nbsp;
+          <a href="/toSignUp">create an account</a>
+        </span>
       </form>
     </div>
   );

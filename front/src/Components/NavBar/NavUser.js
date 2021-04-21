@@ -51,7 +51,7 @@ export default function NavUser() {
     return (
       <div>
         Hi, {username}&nbsp;
-        <a href="/logout" onclick={logout}>
+        <a href="/logout" onClick={logout}>
           {" "}
           logout
         </a>

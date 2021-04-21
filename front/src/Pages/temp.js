@@ -63,9 +63,14 @@ export default function HomePage() {
       body: JSON.stringify(data),
     });
 
+    console.log("create group res", resRaw);
+
     setGroupName("");
+
     setRelod(reload + 1);
     alert("Created!");
+
+    console.log("reload", reload);
   };
 
   return (
@@ -75,46 +80,40 @@ export default function HomePage() {
           <h4>Explore</h4>
           <hr></hr>
           <PostList query={{}}></PostList>
-          <p className="message" hidden={loginStat}>
-            <a href="/toLogin">Login</a> to create your Group!
-          </p>
-
-          <div className="addGroupDiv" hidden={!loginStat}>
-            <hr></hr>
-            <form className="bg-light addGroupForm" onSubmit={createGroup}>
-              <h4>Create Group</h4>
-              <div className="form-group">
-                <label className="form-label">Group Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="group_name"
-                  placeholder="Enter your groupName"
-                  value={groupName}
-                  onChange={(e) => setGroupName(e.target.value)}
-                  required
-                  id="username"
-                />
-              </div>
-              <div className="d-grid gap-2 btnDiv">
-                <button className="btn btn-outline-primary" type="submit">
-                  submit
-                </button>
-              </div>
-              <div
-                block
-                className="alert-danger"
-                role="alert"
-                hidden={validGroupName}
-              >
-                Invalid username or password
-              </div>
-            </form>
-          </div>
+          <p hidden={loginStat}>Login to create your Group!</p>
+          <form className="bg-light" onSubmit={createGroup} hidden={!loginStat}>
+            <h4>Create Group</h4>
+            <div className="form-group">
+              <label className="form-label">Group Name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="group_name"
+                placeholder="Enter your groupName"
+                value={groupName}
+                onChange={(e) => setGroupName(e.target.value)}
+                required
+                id="username"
+              />
+            </div>
+            <div className="d-grid gap-2 btnDiv">
+              <button className="btn btn-outline-primary" type="submit">
+                submit
+              </button>
+            </div>
+            <div
+              block
+              className="alert-danger"
+              role="alert"
+              hidden={validGroupName}
+            >
+              Invalid username or password
+            </div>
+          </form>
         </div>
-        <div className="col-3">
+        <div className="col-3 ">
           <div className="recommendGroups">
-            <p>Groups Recommended</p>
+            <p>Groups Worth Joining</p>
             <hr></hr>
             <GroupList
               username={username}
