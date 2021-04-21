@@ -52,7 +52,6 @@ export default function GroupPage() {
 
   const createPost = async (event) => {
     event.preventDefault();
-    // TODO: implement create post
     const date = new Date("<YYYY-mm-ddTHH:MM:ss>");
 
     const data = {
