@@ -3,11 +3,11 @@ Author: Tiange He & Ning Ding
 
 Class Link: [here](https://johnguerra.co/classes/webDevelopment_spring_2021/)
 
-Project Link: here
+Project Link: [here](https://group-here.herokuapp.com/)
 
 This is a light-weight social platform for person to discuss on any topic they want. User can create group and join them.
 
-<a href="">Video demo</a>
+Video demo：[here](https://youtu.be/JRdcbpOwE0M)
 
 ## Project Objective
 
@@ -17,8 +17,11 @@ This is a light-weight social platform for person to discuss on any topic they w
 
 ## Screenshots
 
-![Alt text](./images/)to be added
-![Alt text](./images/)
+Homepage
+![homepage](./front/public/display_img/homepage.png)
+
+group page
+![group page](./front/public/display_img/group_page.png)
 
 ## Setup
 
