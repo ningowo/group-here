@@ -3,7 +3,7 @@ import NavUser from "./NavUser.js";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light ">
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <img
           id="titleIcon"

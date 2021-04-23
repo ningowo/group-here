@@ -69,10 +69,10 @@ export default function HomePage() {
   };
 
   return (
-    <div className="container main-container">
+    <main className="container main-container">
       <div className="row">
-        <div className="col-9">
-          <h4>Explore</h4>
+        <div className="col-8">
+          <h1>Explore</h1>
           <hr></hr>
           <PostList query={{}}></PostList>
           <p className="message" hidden={loginStat}>
@@ -112,7 +112,7 @@ export default function HomePage() {
             </form>
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-4">
           <div className="recommendGroups">
             <p>Groups Recommended</p>
             <hr></hr>
@@ -124,6 +124,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

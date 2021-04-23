@@ -35,13 +35,23 @@ const PostList = (props) => {
         .map((post) => (
           <div className="postDiv" key={post._id}>
             <div className="likes">
-              <span>❤</span>
-              {/*<span>{post.likes} likes</span>*/}
+              <svg
+                class="Zi Zi--Heart Button-zi"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                width="1.2em"
+                height="1.2em"
+              >
+                <path
+                  d="M2 8.437C2 5.505 4.294 3.094 7.207 3 9.243 3 11.092 4.19 12 6c.823-1.758 2.649-3 4.651-3C19.545 3 22 5.507 22 8.432 22 16.24 13.842 21 12 21 10.158 21 2 16.24 2 8.437z"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
             </div>
             <div className="postContentDiv">
-              <h5>
+              <h2>
                 <a href={"/detail/" + post.post_name}>{post.post_name}</a>
-              </h5>
+              </h2>
               <div className="postOverview">
                 <p>{post.content}</p>
               </div>

@@ -75,7 +75,7 @@ export default function DetailPage() {
   };
 
   return (
-    <div className="DetailPage">
+    <main className="DetailPage">
       <div className="col-8 postDetailDiv">
         <div className="postInfo">
           <h4 className="postName">{post.post_name}</h4>
@@ -118,6 +118,6 @@ export default function DetailPage() {
         </form>
       </div>
       <div className="col-4">{/*右边是加入小组的选项*/}</div>
-    </div>
+    </main>
   );
 }

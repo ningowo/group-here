@@ -50,9 +50,9 @@ export default function LoginPage() {
   return loginStat ? (
     <Redirect to="/" />
   ) : (
-    <div className="userPage">
-      <form className="bg-light user-ctl" onSubmit={handleSubmit}>
-        <h4>Sign up</h4>
+    <main className="userPage">
+      <form className="user-ctl" onSubmit={handleSubmit}>
+        <h1>Sign up</h1>
         <div className="form-group">
           <label className="form-label">Username</label>
           <input
@@ -98,6 +98,6 @@ export default function LoginPage() {
         </div>
         Already have an account? <a href="/toLogin">Login Here</a>
       </form>
-    </div>
+    </main>
   );
 }

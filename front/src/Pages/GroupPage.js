@@ -95,10 +95,10 @@ export default function GroupPage() {
   }
 
   return (
-    <div className="main-container container">
+    <main className="main-container container">
       <h2>{params.id}</h2>
       <div className="row">
-        <div className="col-9">
+        <div className="col-8">
           <div className="postDiv">
             <PostList query={{ group: group.group_name }}></PostList>
           </div>
@@ -146,7 +146,7 @@ export default function GroupPage() {
             </div>
           </form>
         </div>
-        <div className="col-3">
+        <div className="col-4">
           <div className="recommendGroups">
             <p>Groups Recommended</p>
             <hr></hr>
@@ -154,6 +154,6 @@ export default function GroupPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

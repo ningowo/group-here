@@ -32,7 +32,7 @@ export default function NavUser() {
   if (!loginStat) {
     return (
       <div>
-        <ul className="navbar-nav justify-content-end">
+        <ul className="navbar-nav justify-content-end nav-user">
           <li className="nav-item">
             <a className="nav-link" href="/toLogin">
               Login

@@ -13,13 +13,11 @@ body {
 
 body {
   font-family: Verdana;
-  /*  background-color: #efedfa;*/
 }
 
 nav {
-  background-color: rgba(205, 199, 237, 1) !important;
+  background-color: rgba(92, 161, 245, 0.8) !important;
   padding: 0 120px;
-
   font-family: Georgia;
   height: 70px;
 }
@@ -30,8 +28,8 @@ nav h3 {
 }
 
 nav a {
-  text-decoration: underline #533fc6;
-  color: #533fc6;
+  text-decoration: underline black;
+  color: black;
 }
 
 body > .container {
@@ -39,12 +37,11 @@ body > .container {
   width: 100%;
   height: 100%;
   max-width: 10000px;
-  /*margin-bottom: -50px;*/
 }
 
 footer {
   width: 100%;
-  border-top: 1px solid #dee2de;
+  border-top: 1px solid #7ab6ff;
   height: 50px;
   margin-top: 50px;
   text-align: center;

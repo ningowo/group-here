@@ -12,8 +12,6 @@ import GroupPage from "./Pages/GroupPage.js";
 import NavBarGlobal from "./Components/NavBar/NavBarGlobal.js";
 
 function App() {
-  // to store username as session
-
   return (
     <Router>
       <NavBarGlobal></NavBarGlobal>
