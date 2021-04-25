@@ -70,7 +70,7 @@ const PostList = (props) => {
     );
   };
 
-  if (renderPosts() === <div></div>)
+  if (renderPosts() === <div></div>) {
     return (
       <div>
         <p>
@@ -78,9 +78,15 @@ const PostList = (props) => {
         </p>
       </div>
     );
-  else
+  } else if (posts.length < 1) {
     return (
-      <div className="container">
+      <div className="container postDiv">
+        <p>Create your first post!</p>
+      </div>
+    );
+  } else if (query.group != null) {
+    return (
+      <div className="container postDiv">
         <div className="posts">{renderPosts(posts)}</div>
         <span className="pageBar">
           page{"   "}
@@ -101,6 +107,14 @@ const PostList = (props) => {
         </span>
       </div>
     );
+  } else {
+    const postsSlice = posts.slice(0, 20);
+    return (
+      <div className="container postDiv">
+        <div className="posts">{renderPosts(postsSlice)}</div>
+      </div>
+    );
+  }
 };
 
 PostList.propTypes = {

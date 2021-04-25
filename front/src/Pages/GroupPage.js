@@ -96,14 +96,13 @@ export default function GroupPage() {
 
   return (
     <main className="main-container container">
-      <h2>{params.id}</h2>
+      <h1>{params.id}</h1>
       <div className="row">
         <div className="col-8">
-          <div className="postDiv">
-            <PostList query={{ group: group.group_name }}></PostList>
-          </div>
+          <PostList query={{ group: group.group_name }}></PostList>
+
           <form className="bg-light" onSubmit={createPost} hidden={!loginStat}>
-            <h4>Create Post</h4>
+            <h2>Create Post</h2>
             <div className="form-group">
               <label className="form-label">Post Name</label>
               <input

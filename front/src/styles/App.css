@@ -49,14 +49,18 @@ input {
   padding: 0;
 }
 
-.groupDiv,
-.postDiv {
+.groupDiv {
   margin: 10px;
 }
 
-.posts .postDiv {
+.posts {
   margin: 0px;
   padding: 10px;
+}
+
+.postDiv {
+  margin: 20px auto;
+  padding: 0;
 }
 
 .detailPage {

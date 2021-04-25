@@ -82,7 +82,7 @@ export default function HomePage() {
           <div className="addGroupDiv" hidden={!loginStat}>
             <hr></hr>
             <form className="bg-light addGroupForm" onSubmit={createGroup}>
-              <h4>Create Group</h4>
+              <h2>Create Group</h2>
               <div className="form-group">
                 <label className="form-label">Group Name</label>
                 <input
