@@ -31,7 +31,9 @@ const GroupList = (props) => {
       groupsInput.map((group) => (
         <div className="groupDiv" key={group._id}>
           <div className="groupName">
-            <a href={"/group/" + group.group_name}>{group.group_name}</a>
+            <a href={"/group/" + encodeURIComponent(group.group_name)}>
+              {group.group_name}
+            </a>
           </div>
           {/*统计一下小组人数*/}
           {/*<div className="groupMemberNum">{group.members.length}</div>*/}

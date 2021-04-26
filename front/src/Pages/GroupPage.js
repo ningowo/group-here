@@ -31,7 +31,11 @@ export default function GroupPage() {
 
   useEffect(() => {
     async function fetchdata() {
-      const data = { colName: "groups", query: { group_name: params.id } };
+      const data = {
+        colName: "groups",
+        query: { group_name: decodeURIComponent(params.id) },
+      };
+      console.log("#######decode data:", data);
       const resRaw = await fetch("/query", {
         method: "POST",
         credentials: "same-origin",
@@ -96,7 +100,7 @@ export default function GroupPage() {
 
   return (
     <main className="main-container container">
-      <h1>{params.id}</h1>
+      <h1>{decodeURIComponent(params.id)}</h1>
       <div className="row">
         <div className="col-8">
           <PostList query={{ group: group.group_name }}></PostList>

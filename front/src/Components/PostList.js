@@ -33,7 +33,7 @@ const PostList = (props) => {
       postsInput
         .slice(
           postPage * postPerPage,
-          Math.min((postPage + 1) * postPerPage, postsInput.length - 1)
+          Math.min((postPage + 1) * postPerPage, postsInput.length)
         )
         .map((post) => (
           <div className="postDiv" key={post._id}>
@@ -53,7 +53,9 @@ const PostList = (props) => {
             </div>
             <div className="postContentDiv">
               <h2>
-                <a href={"/detail/" + post.post_name}>{post.post_name}</a>
+                <a href={"/detail/" + encodeURIComponent(post.post_name)}>
+                  {post.post_name}
+                </a>
               </h2>
               <div className="postOverview">
                 <p>{post.content}</p>

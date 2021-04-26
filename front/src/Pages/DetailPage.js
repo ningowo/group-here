@@ -31,7 +31,10 @@ export default function DetailPage() {
   }, []);
 
   const fetchData = async () => {
-    const data = { colName: "posts", query: { post_name: params.id } };
+    const data = {
+      colName: "posts",
+      query: { post_name: decodeURIComponent(params.id) },
+    };
     const resRaw = await fetch("/query", {
       method: "POST",
       credentials: "same-origin",
