@@ -7,6 +7,7 @@ export default function DetailPage() {
   const [post, setPost] = useState([]);
   const [comments, setComments] = useState([]);
   const [reload, setReload] = useState(0);
+  // const [reloadComment, setReloadComment] = useState
   const [loginStat, setLoginState] = useState(false);
   const [username, setUsername] = useState("");
 
@@ -29,21 +30,22 @@ export default function DetailPage() {
     fetchUser();
   }, []);
 
+  const fetchData = async () => {
+    const data = { colName: "posts", query: { post_name: params.id } };
+    const resRaw = await fetch("/query", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const res = await resRaw.json();
+    console.log("fetch post detail for detailpage from be", res);
+    setPost(res.data[0]);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = { colName: "posts", query: { post_name: params.id } };
-      const resRaw = await fetch("/query", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const res = await resRaw.json();
-      console.log("fetch post detail for detailpage from be", res);
-      setPost(res.data[0]);
-    };
     fetchData();
   }, [reload]);
 
@@ -67,9 +69,7 @@ export default function DetailPage() {
       body: JSON.stringify(data),
     });
 
-    console.log("create comment: ", resRaw);
-
-    setReload(reload + 1);
+    fetchData();
     alert("Commented!");
     setNewComment("");
   };
@@ -90,12 +90,12 @@ export default function DetailPage() {
             reload={reload}
           ></CommentList>
         </div>
-        <p hidden={!loginStat}>
+        <p hidden={loginStat}>
           <a href="/toLogin">Login</a>
           &nbsp;to create a comment
         </p>
 
-        <form className="bg-light" onSubmit={createComment} hidden={loginStat}>
+        <form className="bg-light" onSubmit={createComment} hidden={!loginStat}>
           <h4>Create Comment</h4>
           <div className="form-group">
             <label className="form-label">comment</label>

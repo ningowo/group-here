@@ -24,9 +24,11 @@ export default function NavUser() {
   const logout = async (event) => {
     event.preventDefault();
     await fetch("/logout");
-    setLoginState(false);
-    setUsername("");
-    setRelod(reload + 1);
+    document.location.href = "/";
+
+    // setLoginState(false);
+    // setUsername("");
+    // setRelod(reload + 1);
   };
 
   if (!loginStat) {
