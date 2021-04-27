@@ -5,7 +5,6 @@ import CommentList from "../Components/CommentList.js";
 export default function DetailPage() {
   const [newComment, setNewComment] = useState("");
   const [post, setPost] = useState([]);
-  const [comments, setComments] = useState([]);
   const [reload, setReload] = useState(0);
   // const [reloadComment, setReloadComment] = useState
   const [loginStat, setLoginState] = useState(false);
@@ -50,14 +49,14 @@ export default function DetailPage() {
 
   useEffect(() => {
     fetchData();
-  }, [reload]);
+  }, []);
 
   const createComment = async (event) => {
     event.preventDefault();
     const data = {
       colName: "comments",
       data: {
-        post: post,
+        post: post.post_name,
         author: username,
         content: newComment,
         create_date: new Date(),
@@ -72,7 +71,8 @@ export default function DetailPage() {
       body: JSON.stringify(data),
     });
 
-    fetchData();
+    // fetchData();
+    setReload(reload + 1);
     alert("Commented!");
     setNewComment("");
   };

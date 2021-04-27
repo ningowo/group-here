@@ -5,7 +5,7 @@ const CommentList = (props) => {
   const [comments, setComments] = useState([]);
   const { query, reload } = props;
   //const limit = props.limit ? props.limit : 0;
-
+  console.log("query = ", query);
   useEffect(() => {
     const fetchCommentsList = async () => {
       const data = { colName: "comments", query: query };
@@ -24,10 +24,10 @@ const CommentList = (props) => {
       console.log("comments: ", comments);
     };
     fetchCommentsList();
-  }, [reload]);
+  }, [reload, query]);
 
   const renderComments = (commentsInput) => {
-    console.log("render comments: ", commentsInput);
+    // console.log("render comments: ", commentsInput);
     return commentsInput ? (
       commentsInput.map((comment) => (
         <div className="commentDiv" key={comment._id}>
@@ -50,6 +50,7 @@ const CommentList = (props) => {
 
 CommentList.propTypes = {
   post: PropTypes.object.isRequired,
+  reload: PropTypes.object.number.isRequired,
   limit: PropTypes.number,
 };
 
