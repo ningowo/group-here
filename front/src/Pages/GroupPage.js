@@ -105,7 +105,7 @@ export default function GroupPage() {
         <div className="col-8">
           <PostList query={{ group: group.group_name }}></PostList>
 
-          <form className="bg-light" onSubmit={createPost} hidden={!loginStat}>
+          <form className="" onSubmit={createPost} hidden={!loginStat}>
             <h2>Create Post</h2>
             <div className="form-group">
               <label className="form-label">Post Name</label>
@@ -117,7 +117,7 @@ export default function GroupPage() {
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
                 required
-                id="username"
+                id="group_name"
               />
             </div>
             <div className="form-group">
@@ -131,7 +131,7 @@ export default function GroupPage() {
                 onChange={(e) => setPostContent(e.target.value)}
                 rows={9}
                 required
-                id="username"
+                id="group_content"
               />
             </div>
             <div className="d-grid gap-2 btnDiv">

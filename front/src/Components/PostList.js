@@ -83,77 +83,46 @@ const PostList = (props) => {
     return tmp;
   };
 
-  return (
-    <div className="container postDiv">
-      <div className="posts">{renderPosts(posts)}</div>
-      <span className="pageBar">
-        page{"   "}
-        {range(
-          Math.max(0, postPage - 5),
-          Math.min(postPage + 5, Math.floor(posts.length / postPerPage))
-        ).map((v) =>
-          v === postPage ? (
-            <div
-              className="pageClickDivSelect"
-              onClick={(event) => setPostPage(v)}
-            >
-              {v + 1}
-            </div>
-          ) : (
-            <div className="pageClickDiv" onClick={(event) => setPostPage(v)}>
-              {v + 1}
-            </div>
-          )
-        )}
-      </span>
-    </div>
-  );
-
-  // if (renderPosts() === <div></div>) {
-  //   return (
-  //     <div>
-  //       <p>
-  //         <a href="/toLogin">Login</a> to create a post!
-  //       </p>
-  //     </div>
-  //   );
-  // } else if (posts.length < 1) {
-  //   return (
-  //     <div className="container postDiv">
-  //       <p>Create your first post!</p>
-  //     </div>
-  //   );
-  // } else if (query.group != null) {
-  //   return (
-  //     <div className="container postDiv">
-  //       <div className="posts">{renderPosts(posts)}</div>
-  //       <span className="pageBar">
-  //         page{"   "}
-  //         {[...Array(Math.floor(posts.length / postPerPage)).keys()].map((v) =>
-  //           v === postPage ? (
-  //             <div
-  //               className="pageClickDivSelect"
-  //               onClick={(event) => setPostPage(v)}
-  //             >
-  //               {v + 1}
-  //             </div>
-  //           ) : (
-  //             <div className="pageClickDiv" onClick={(event) => setPostPage(v)}>
-  //               {v + 1}
-  //             </div>
-  //           )
-  //         )}
-  //       </span>
-  //     </div>
-  //   );
-  // } else {
-  //   const postsSlice = posts.slice(0, 20);
-  //   return (
-  //     <div className="container postDiv">
-  //       <div className="posts">{renderPosts(postsSlice)}</div>
-  //     </div>
-  //   );
-  // }
+  if (renderPosts() === <div></div>) {
+    return (
+      <div>
+        <p>
+          <a href="/toLogin">Login</a> to create a post!
+        </p>
+      </div>
+    );
+  } else if (posts.length < 1) {
+    return (
+      <div className="container postDiv">
+        <p>Create your first post!</p>
+      </div>
+    );
+  } else
+    return (
+      <div className="container postDiv">
+        <div className="posts">{renderPosts(posts)}</div>
+        <span className="pageBar">
+          page{"   "}
+          {range(
+            Math.max(0, postPage - 5),
+            Math.min(postPage + 5, Math.floor(posts.length / postPerPage))
+          ).map((v) =>
+            v === postPage ? (
+              <div
+                className="pageClickDivSelect"
+                onClick={(event) => setPostPage(v)}
+              >
+                {v + 1}
+              </div>
+            ) : (
+              <div className="pageClickDiv" onClick={(event) => setPostPage(v)}>
+                {v + 1}
+              </div>
+            )
+          )}
+        </span>
+      </div>
+    );
 };
 
 PostList.propTypes = {

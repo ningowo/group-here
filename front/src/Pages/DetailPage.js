@@ -81,7 +81,7 @@ export default function DetailPage() {
     <main className="DetailPage">
       <div className="col-8 postDetailDiv">
         <div className="postInfo">
-          <h4 className="postName">{post.post_name}</h4>
+          <h1 className="postName">{post.post_name}</h1>
           <div className="author">By {post.author}</div>
         </div>
         <p></p>
@@ -93,13 +93,13 @@ export default function DetailPage() {
             reload={reload}
           ></CommentList>
         </div>
-        <p hidden={loginStat}>
+        <p className="message" hidden={loginStat}>
           <a href="/toLogin">Login</a>
           &nbsp;to create a comment
         </p>
 
-        <form className="bg-light" onSubmit={createComment} hidden={!loginStat}>
-          <h4>Create Comment</h4>
+        <form className="" onSubmit={createComment} hidden={!loginStat}>
+          <h2>Create Comment</h2>
           <div className="form-group">
             <label className="form-label">comment</label>
             <input

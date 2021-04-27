@@ -19,9 +19,7 @@ const GroupList = (props) => {
           body: JSON.stringify(data),
         })
       ).json();
-      //console.log("res from be", res.data);
       setGroups(res.data);
-      //console.log("after setgroup", groups);
     };
     fetchPostList();
   }, [reload]);
@@ -35,9 +33,6 @@ const GroupList = (props) => {
               {group.group_name}
             </a>
           </div>
-          {/*统计一下小组人数*/}
-          {/*<div className="groupMemberNum">{group.members.length}</div>*/}
-          {/*<JoinGroup username={username} group={group}></JoinGroup>*/}
         </div>
       ))
     ) : (
