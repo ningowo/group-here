@@ -5,15 +5,17 @@ Class Link: [here](https://johnguerra.co/classes/webDevelopment_spring_2021/)
 
 Project Link: [here](https://group-here.herokuapp.com/)
 
-This is a light-weight social platform for person to discuss on any topic they want. User can create group and join them.
+This is a light-weight social platform for person to discuss on topics. 
 
-Video demo：[here](https://youtu.be/JRdcbpOwE0M)
+User can browse the content within any group, and log in to create groups and posts, and make comments to posts.
+
+Video demo：[here](https://youtu.be/DPd28Vq9AWQ)
 
 ## Project Objective
 
 - Making a social platform that allows user to discuss according to the group topic.
-- User can join group and make comments on other users’ posts.
-- support authentication.
+- User can create groups, posts and make comments on other users’ posts.
+- support user authentication, including log in, sign up and logout.
 
 ## Screenshots
 
