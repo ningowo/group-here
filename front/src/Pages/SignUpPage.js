@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router";
-import App from "../App";
+import md5 from "js-md5";
 
 export default function LoginPage() {
   const [validUser, isValidUser] = useState(true);
@@ -8,6 +8,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,12 +16,12 @@ export default function LoginPage() {
 
     const userInfo = {
       username: username,
-      password: password,
+      password: md5(password),
     };
 
     if (password !== password2) {
       isValidUser(false);
-      console.log("password not match");
+      setMessage("password not match");
       return;
     }
 
@@ -40,6 +41,7 @@ export default function LoginPage() {
 
     if (!res.isLogin) {
       isValidUser(false);
+      setMessage("User already exist.");
     } else {
       isValidUser(true);
       setLoginStat(true);
@@ -93,7 +95,7 @@ export default function LoginPage() {
             submit
           </button>
           <div block className="alert-danger" role="alert" hidden={validUser}>
-            Invalid username or password
+            {message}
           </div>
         </div>
         Already have an account? <a href="/toLogin">Login Here</a>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router";
+import md5 from "js-md5";
 
 export default function LoginPage() {
   const [validUser, isValidUser] = useState(true);
@@ -13,7 +14,7 @@ export default function LoginPage() {
 
     const userInfo = {
       username: username,
-      password: password,
+      password: md5(password),
     };
 
     const resRaw = await fetch("/login", {

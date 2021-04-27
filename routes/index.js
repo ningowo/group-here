@@ -38,7 +38,7 @@ router.post("/signUp", async (req, res) => {
   const user = await dbController.findUserByName(username);
 
   if (user) {
-    res.send({ isLogin: false, message: "user already exsist" });
+    res.send({ isLogin: false, message: "user already exist" });
   } else {
     const dbres = await dbController.create("users", req.body);
     console.log("create user res", dbres);
