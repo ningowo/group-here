@@ -16,6 +16,7 @@ export default function LoginPage() {
 
     const userInfo = {
       username: username,
+      // good use for password hashing
       password: md5(password),
     };
 
