@@ -75,6 +75,7 @@ export default function HomePage() {
           <h1>Explore</h1>
           <hr></hr>
           <PostList query={{}}></PostList>
+          // consider refactoring line 79 to line 81 to a component
           <p className="message" hidden={loginStat}>
             <a href="/toLogin">Login</a> to create your Group!
           </p>
