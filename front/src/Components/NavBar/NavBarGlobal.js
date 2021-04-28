@@ -1,6 +1,7 @@
 import React from "react";
 import NavUser from "./NavUser.js";
 
+// consider refactor NavBar.js and NavUser.js
 export default function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg">

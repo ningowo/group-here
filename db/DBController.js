@@ -1,5 +1,5 @@
 const { MongoClient, ObjectId } = require("mongodb");
-
+// Please hide the database access credentials
 function DBController() {
   const dbController = {};
   const url =

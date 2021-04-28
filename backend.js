@@ -1,3 +1,4 @@
+// Please change all the var to cons to meet ES6 standard
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
