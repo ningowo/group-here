@@ -23,7 +23,9 @@ const CommentList = (props) => {
       setComments(res.data);
       console.log("comments: ", comments);
     };
-    fetchCommentsList();
+    if (query) {
+      fetchCommentsList();
+    }
   }, [reload, query]);
 
   const renderComments = (commentsInput) => {
