@@ -1,3 +1,5 @@
+// great implementation of this component. good use of the hooks, specificially the useEffects and the useStates.
+// Some comments would be a great addition to the documentation of this code.
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
