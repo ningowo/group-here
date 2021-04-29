@@ -1,3 +1,4 @@
+/* Great updates to the app! It looks nice. The style changes are very noticable.*/
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
