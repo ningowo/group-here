@@ -1,3 +1,4 @@
+// awesome authentication strategy on this file. 
 function MyAuth() {
   const passport = require("passport");
   const Strategy = require("passport-local").Strategy;
